@@ -1,0 +1,19 @@
+
+
+{
+  "name": "vankleff-backend",
+  "version": "1.0.0",
+  "description": "Vankleff Global authentication and OTP backend",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "resend": "^6.5.2"
+  }
+}
